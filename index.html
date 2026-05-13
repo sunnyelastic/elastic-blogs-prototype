@@ -196,18 +196,26 @@
   .subnav__list--end {
     margin-left: auto;
   }
-  /* External link — small outbound arrow icon next to the label */
+  /* External link — brand logo on the left, small outbound arrow on the right */
   .subnav__link--external {
-    gap: 4px;
+    gap: 6px;
   }
-  .subnav__link--external svg {
+  .subnav__link-logo {
+    width: 14px;
+    height: 14px;
+    color: var(--gray-dark);
+    flex-shrink: 0;
+    transition: color 0.15s ease;
+  }
+  .subnav__link-ext {
     width: 11px;
     height: 11px;
     color: var(--gray);
     flex-shrink: 0;
     transition: color 0.15s ease;
   }
-  .subnav__link--external:hover svg { color: var(--gray-dark); }
+  .subnav__link--external:hover .subnav__link-logo,
+  .subnav__link--external:hover .subnav__link-ext { color: var(--gray-dark); }
 
   /* =========================================================
      Section 1 — HERO  (1512 × 776)
@@ -2642,13 +2650,16 @@
           <li><a href="#home" data-nav="home" class="subnav__link is-active">Home</a></li>
           <li><a href="#tutorials" data-nav="tutorials" class="subnav__link">Tutorials</a></li>
           <li><a href="#examples" data-nav="examples" class="subnav__link">Examples</a></li>
+          <li><a href="#jina-ai-research" data-nav="jina-ai-research" class="subnav__link">Jina AI Research</a></li>
           <li><a href="#integrations" data-nav="integrations" class="subnav__link">Integrations</a></li>
           <li><a href="#blog" data-nav="blog" class="subnav__link">Blog</a></li>
         </ul>
         <ul class="subnav__list subnav__list--end" data-subnav-lab="elasticsearch">
-          <li><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html" target="_blank" rel="noopener noreferrer" class="subnav__link subnav__link--external">Docs <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M4.5 2.5h5v5M9.5 2.5L4.5 7.5M9 8v1.5H2.5v-7H4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
-          <li><a href="https://github.com/elastic/elasticsearch-labs" target="_blank" rel="noopener noreferrer" class="subnav__link subnav__link--external">GitHub <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M4.5 2.5h5v5M9.5 2.5L4.5 7.5M9 8v1.5H2.5v-7H4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
-          <li><a href="https://discuss.elastic.co/" target="_blank" rel="noopener noreferrer" class="subnav__link subnav__link--external">Forums <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M4.5 2.5h5v5M9.5 2.5L4.5 7.5M9 8v1.5H2.5v-7H4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
+          <li><a href="https://github.com/elastic/elasticsearch-labs" target="_blank" rel="noopener noreferrer" class="subnav__link subnav__link--external">
+            <svg class="subnav__link-logo" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.57.1.78-.25.78-.55 0-.27-.01-1.18-.02-2.14-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.05-.72.08-.7.08-.7 1.16.08 1.78 1.2 1.78 1.2 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.19-3.09-.12-.29-.51-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 015.79 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.12 3.05.74.81 1.19 1.83 1.19 3.09 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.14 0 1.54-.01 2.79-.01 3.17 0 .3.21.66.79.55C20.21 21.38 23.5 17.08 23.5 12 23.5 5.65 18.35.5 12 .5z"/></svg>
+            GitHub
+            <svg class="subnav__link-ext" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M4.5 2.5h5v5M9.5 2.5L4.5 7.5M9 8v1.5H2.5v-7H4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a></li>
         </ul>
         <!-- Observability Labs subnav -->
         <ul class="subnav__list" data-subnav-lab="observability" hidden>
@@ -3711,6 +3722,21 @@
       </div>
     </section>
   </div><!-- /#page-blog -->
+
+  <!-- =================== JINA AI RESEARCH (stub) =================== -->
+  <div id="page-jina-ai-research" class="page-view" hidden>
+    <section class="subpage-hero">
+      <div class="subpage-hero__inner">
+        <h1 class="subpage-hero__title">Jina AI Research</h1>
+        <p class="subpage-hero__subtitle">Research papers, technical write-ups, and experimental work from the Jina AI team</p>
+      </div>
+    </section>
+    <section class="subpage-body">
+      <div class="container">
+        <p style="color: var(--gray); font-size: 16px; line-height: 1.6;">Lorem ipsum dolor sit amet consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      </div>
+    </section>
+  </div><!-- /#page-jina-ai-research -->
 
   <!-- =================== TUTORIAL ARTICLE PAGE =================== -->
   <div id="page-tutorial" class="page-view" hidden>
@@ -7172,6 +7198,7 @@ filled_prompt = PROMPT_TEMPLATE.<span class="tok-function">replace</span>(<span 
       tutorials:    { view: document.getElementById('page-tutorials'),    subnav: 'tutorials',    title: 'Tutorials — Search Labs' },
       examples:     { view: document.getElementById('page-examples'),     subnav: 'examples',     title: 'Examples — Search Labs' },
       integrations: { view: document.getElementById('page-integrations'), subnav: 'integrations', title: 'Integrations — Search Labs' },
+      'jina-ai-research': { view: document.getElementById('page-jina-ai-research'), subnav: 'jina-ai-research', title: 'Jina AI Research', lab: 'elasticsearch' },
       blog:         { view: document.getElementById('page-blog'),         subnav: 'blog',         title: 'Blog — Search Labs' },
       observability:{ view: document.getElementById('page-observability'),subnav: 'obs-home',    title: 'Observability Labs', lab: 'observability', hideNewsletter: true },
       'obs-article':{ view: document.getElementById('page-obs-article'),  subnav: 'obs-home',    title: 'Evaluating search relevance part 2 — Phi-3 as relevance judge — Observability Labs', lab: 'observability', hideNewsletter: true },
