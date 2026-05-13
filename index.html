@@ -2653,15 +2653,15 @@
         <!-- Observability Labs subnav -->
         <ul class="subnav__list" data-subnav-lab="observability" hidden>
           <li><a href="#observability" data-nav="obs-home" class="subnav__link">Home</a></li>
-          <li><a href="#observability:threat-command" data-nav="threat-command" class="subnav__link">Threat Command</a></li>
-          <li><a href="#observability:product-updates" data-nav="product-updates" class="subnav__link">Product Updates</a></li>
-          <li><a href="#observability:reports" data-nav="reports" class="subnav__link">Reports</a></li>
-          <li><a href="#observability:enablement" data-nav="enablement" class="subnav__link">Enablement</a></li>
+          <li><a href="#obs-filter" data-nav="obs-tags" class="subnav__link">Tags</a></li>
         </ul>
         <!-- Security Labs subnav -->
         <ul class="subnav__list" data-subnav-lab="security" hidden>
           <li><a href="#security" data-nav="sec-home" class="subnav__link">Home</a></li>
-          <li><a href="#sec-filter" data-nav="sec-tags" class="subnav__link">Tags</a></li>
+          <li><a href="#security:threat-command" data-nav="threat-command" class="subnav__link">Threat Command</a></li>
+          <li><a href="#security:product-updates" data-nav="product-updates" class="subnav__link">Product Updates</a></li>
+          <li><a href="#security:reports" data-nav="reports" class="subnav__link">Reports</a></li>
+          <li><a href="#security:enablement" data-nav="enablement" class="subnav__link">Enablement</a></li>
         </ul>
         <!-- Company subnav -->
         <ul class="subnav__list" data-subnav-lab="company" hidden>
@@ -4783,6 +4783,8 @@ filled_prompt = PROMPT_TEMPLATE.<span class="tok-function">replace</span>(<span 
 
   <div id="page-security" class="page-view" hidden>
 
+    <div data-sec-section="sec-home">
+
     <!-- Hero — reuses .hero / .featured / .popular components -->
     <section class="hero">
       <div class="hero__bg-placeholder" aria-hidden="true"></div>
@@ -5015,6 +5017,177 @@ filled_prompt = PROMPT_TEMPLATE.<span class="tok-function">replace</span>(<span 
         </div>
       </div>
     </section>
+
+      </div><!-- /[data-sec-section="sec-home"] -->
+
+        <div data-sec-section="other" hidden>
+
+      <section class="subpage-hero">
+        <div class="subpage-hero__inner">
+          <h1 class="subpage-hero__title">Threat Command</h1>
+          <p class="subpage-hero__subtitle">Real-time threat intelligence and high-fidelity findings curated by our threat hunters</p>
+        </div>
+      </section>
+
+      <section class="subpage-body">
+        <div class="blog-layout">
+          <aside>
+            <nav class="side-nav" aria-label="Categories">
+            <div class="side-nav__group">
+              <button type="button" class="side-nav__group-label" aria-expanded="true">
+                Security Research
+                <svg class="side-nav__chevron" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+              <ul class="side-nav__list">
+                <li class="side-nav__item"><a href="#" class="side-nav__row is-active">All Reports</a></li>
+                <li class="side-nav__item">
+                  <button type="button" class="side-nav__row" aria-expanded="false">
+                    Threat Intel
+                    <svg class="side-nav__chevron" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </button>
+                  <ul class="side-nav__sublist">
+                    <li><a href="#" class="side-nav__row">Lorem actors</a></li>
+                    <li><a href="#" class="side-nav__row">Ipsum campaigns</a></li>
+                  </ul>
+                </li>
+                <li class="side-nav__item"><a href="#" class="side-nav__row">Malware analysis</a></li>
+                <li class="side-nav__item"><a href="#" class="side-nav__row">Detection engineering</a></li>
+                <li class="side-nav__item">
+                  <button type="button" class="side-nav__row" aria-expanded="false">
+                    Internals
+                    <svg class="side-nav__chevron" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </button>
+                  <ul class="side-nav__sublist">
+                    <li><a href="#" class="side-nav__row">Reverse engineering</a></li>
+                    <li><a href="#" class="side-nav__row">Forensics</a></li>
+                  </ul>
+                </li>
+                <li class="side-nav__item"><a href="#" class="side-nav__row">Vulnerabilities</a></li>
+              </ul>
+            </div>
+            <div class="side-nav__group">
+              <button type="button" class="side-nav__group-label" aria-expanded="true">
+                Tools &amp; Tradecraft
+                <svg class="side-nav__chevron" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+              <ul class="side-nav__list">
+                <li class="side-nav__item"><a href="#" class="side-nav__row">YARA rules</a></li>
+                <li class="side-nav__item"><a href="#" class="side-nav__row">Open-source tools</a></li>
+                <li class="side-nav__item"><a href="#" class="side-nav__row">Hunting queries</a></li>
+              </ul>
+            </div>
+            <a href="#" class="side-nav__subscribe">
+              Subscribe
+              <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M3 3a10 10 0 0110 10M3 8a5 5 0 015 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                <circle cx="3.5" cy="12.5" r="1" fill="currentColor"/>
+              </svg>
+            </a>
+          </nav>
+          </aside>
+          <main class="blog-feed">
+
+          <article class="blog-feed__featured">
+            <div class="blog-feed__featured-content">
+              <div class="blog-feed__featured-meta">
+                <a href="#sec-filter" class="chip">Lorem</a>
+                <span class="related-card__date">May 01, 2026</span>
+              </div>
+              <h3 class="blog-feed__featured-title"><a href="#sec-article">Lorem ipsum dolor sit amet consectetur adipiscing elit</a></h3>
+              <p class="blog-feed__featured-desc">Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua enim ad minim veniam.</p>
+              <div class="blog-feed__featured-byline">
+                <div class="blog-feed__featured-byline-avatars" aria-hidden="true">
+                  <span>LO</span><span>RE</span>
+                </div>
+                <span class="blog-feed__featured-byline-text">By <a href="#sec-author">Lorem Owens and Rem Estrada</a></span>
+              </div>
+            </div>
+            <div class="blog-feed__featured-image" role="img" aria-label="Article image placeholder"></div>
+          </article>
+
+          <div class="blog-grid">
+
+            <article class="related-card">
+              <div class="related-card__image" role="img" aria-label="Article image placeholder"></div>
+              <div class="related-card__body">
+                <div class="related-card__meta">
+                  <a href="#sec-filter" class="chip">Lorem</a>
+                  <span class="related-card__date">May 01, 2026</span>
+                </div>
+                <h3 class="related-card__title"><a href="#sec-article">Ut enim ad minim veniam quis nostrud</a></h3>
+                <p class="related-card__desc">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.</p>
+                <div class="related-card__author">
+                  <span class="related-card__avatar">PV</span>
+                  <span class="related-card__author-name">By <a href="#sec-author">Petra Volkov</a></span>
+                </div>
+              </div>
+            </article>
+
+            <article class="related-card">
+              <div class="related-card__image" role="img" aria-label="Article image placeholder"></div>
+              <div class="related-card__body">
+                <div class="related-card__meta">
+                  <a href="#sec-filter" class="chip">Ipsum</a>
+                  <span class="related-card__date">May 01, 2026</span>
+                </div>
+                <h3 class="related-card__title"><a href="#sec-article">Duis aute irure dolor in reprehenderit</a></h3>
+                <p class="related-card__desc">Officia deserunt mollit anim id est laborum sed ut perspiciatis.</p>
+                <div class="related-card__author">
+                  <span class="related-card__avatar">AC</span>
+                  <span class="related-card__author-name">By <a href="#sec-author">Ana Chen</a></span>
+                </div>
+              </div>
+            </article>
+
+            <article class="related-card">
+              <div class="related-card__image" role="img" aria-label="Article image placeholder"></div>
+              <div class="related-card__body">
+                <div class="related-card__meta">
+                  <a href="#sec-filter" class="chip">Dolor</a>
+                  <span class="related-card__date">May 01, 2026</span>
+                </div>
+                <h3 class="related-card__title"><a href="#sec-article">Excepteur sint occaecat cupidatat non proident</a></h3>
+                <p class="related-card__desc">Sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <div class="related-card__author">
+                  <span class="related-card__avatar">RM</span>
+                  <span class="related-card__author-name">By <a href="#sec-author">Reza Maldonado</a></span>
+                </div>
+              </div>
+            </article>
+
+            <article class="related-card">
+              <div class="related-card__image" role="img" aria-label="Article image placeholder"></div>
+              <div class="related-card__body">
+                <div class="related-card__meta">
+                  <a href="#sec-filter" class="chip">Sit</a>
+                  <span class="related-card__date">May 01, 2026</span>
+                </div>
+                <h3 class="related-card__title"><a href="#sec-article">Sed ut perspiciatis unde omnis iste natus error</a></h3>
+                <p class="related-card__desc">Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit.</p>
+                <div class="related-card__author">
+                  <span class="related-card__avatar">JK</span>
+                  <span class="related-card__author-name">By <a href="#sec-author">Jamie Kowalski</a></span>
+                </div>
+              </div>
+            </article>
+
+          </div>
+
+          <nav class="pagination" aria-label="Pagination">
+            <button class="pagination__prev" disabled aria-label="Previous">&larr;</button>
+            <span class="pagination__pages">
+              <button class="pagination__page is-active">1</button>
+              <button class="pagination__page">2</button>
+              <button class="pagination__page">3</button>
+            </span>
+            <button class="pagination__next" aria-label="Next">&rarr;</button>
+          </nav>
+
+        </main>
+        </div>
+      </section>
+
+    </div><!-- /[data-sec-section="other"] -->
 
   </div><!-- /#page-security -->
 
@@ -6975,6 +7148,13 @@ filled_prompt = PROMPT_TEMPLATE.<span class="tok-function">replace</span>(<span 
       'reports':         { title: 'Reports', subtitle: 'Quarterly observability reports and deep-dive analysis from our research team' },
       'enablement':      { title: 'Enablement', subtitle: 'Hands-on training, certifications, and ramp-up paths for engineers and admins' }
     };
+    var SEC_SECTIONS = {
+      'sec-home':       { title: 'Home',            subtitle: 'Primary threat research from Elastic Security Labs' },
+      'threat-command': { title: 'Threat Command',  subtitle: 'Real-time threat intelligence and high-fidelity findings curated by our threat hunters' },
+      'product-updates':{ title: 'Product Updates', subtitle: 'Release notes, deprecations, and new capabilities across the Elastic Security platform' },
+      'reports':        { title: 'Reports',         subtitle: 'Quarterly threat reports, attribution research, and longitudinal analyses from our research team' },
+      'enablement':     { title: 'Enablement',      subtitle: 'Hands-on training, workshops, and walkthroughs to level up your security operations' }
+    };
 
     // Company sub-category data — sub-hash → hero H1/subtitle
     var COMPANY_SECTIONS = {
@@ -7108,6 +7288,7 @@ filled_prompt = PROMPT_TEMPLATE.<span class="tok-function">replace</span>(<span 
       // Sub-nav active item. Observability + Company use their sub-hashes; others use the route's static subnav.
       var activeKey = routes[name].subnav;
       if (name === 'observability') activeKey = subId || 'obs-home';
+      if (name === 'security')      activeKey = subId || 'sec-home';
       if (name === 'company')       activeKey = subId || 'home';
       subnavLinks.forEach(function (a) {
         a.classList.toggle('is-active', a.getAttribute('data-nav') === activeKey);
@@ -7132,6 +7313,27 @@ filled_prompt = PROMPT_TEMPLATE.<span class="tok-function">replace</span>(<span 
             if (osub) osub.textContent = os.subtitle;
           }
           document.title = os.title + ' — Observability Labs';
+        }
+      }
+
+      if (name === 'security') {
+        var sid = subId || 'sec-home';
+        var ov = document.getElementById('page-security');
+        if (ov) {
+          var isHome = (sid === 'sec-home');
+          var homeBlock  = ov.querySelector('[data-sec-section="sec-home"]');
+          var otherBlock = ov.querySelector('[data-sec-section="other"]');
+          if (homeBlock)  homeBlock.hidden  = !isHome;
+          if (otherBlock) otherBlock.hidden =  isHome;
+
+          var os = SEC_SECTIONS[sid] || SEC_SECTIONS['sec-home'];
+          if (!isHome && otherBlock) {
+            var ot   = otherBlock.querySelector('.subpage-hero__title');
+            var osub = otherBlock.querySelector('.subpage-hero__subtitle');
+            if (ot)   ot.textContent   = os.title;
+            if (osub) osub.textContent = os.subtitle;
+          }
+          document.title = os.title + ' — Security Labs';
         }
       }
 
