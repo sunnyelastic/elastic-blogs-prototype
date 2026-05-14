@@ -16,7 +16,7 @@
     --primary:        #FEC514;  /* Yellow */
     --primary-dark:   #FDC031;  /* Yellow - Dark */
     --yellow-light:   #FFDA3D;  /* Yellow */
-    --blue:           #2FAEEA;  /* Blue (chips, links) */
+    --blue:           #0B64DD;  /* Elastic primary blue — used for chips, links, hover states, side-nav active */
 
     /* Neutrals */
     --white:          #FFFFFF;
@@ -380,7 +380,7 @@
     font-weight: 700;
     font-size: var(--fs-link);
     line-height: var(--lh-link);
-    color: var(--blue);
+    color: #0B64DD;
     margin-top: var(--s-8);
   }
   .view-all:hover { text-decoration: underline; }
@@ -425,6 +425,269 @@
   }
 
   /* 4 category cards row */
+  /* ============ Blog tabs (Articles / Series) — uses glossary alphabet pattern ============ */
+  .blog-tabs {
+    max-width: 1512px;
+    margin: 0 auto;
+    padding: var(--s-32) var(--s-64) 0;
+    display: flex;
+    gap: 32px;
+    background: var(--white);
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    border-bottom: 1px solid var(--border);
+  }
+  .blog-tabs button {
+    background: none;
+    border: none;
+    padding: 0 0 14px 0;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 1;
+    color: #9CA3AF;
+    cursor: pointer;
+    position: relative;
+    transition: color 0.15s ease;
+  }
+  .blog-tabs button:hover:not(.is-active) { color: var(--gray-dark); }
+  .blog-tabs button.is-active {
+    color: #0B64DD;
+    font-weight: 700;
+  }
+  .blog-tabs button.is-active::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0; bottom: -1px;
+    height: 2px;
+    background: #0B64DD;
+  }
+
+  /* Series grid — 3 columns, simple image + title + description card */
+  .series-grid {
+    max-width: 1512px;
+    margin: 0 auto;
+    padding: 0 var(--s-64);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--s-32);
+  }
+  .series-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--r-8);
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+  }
+  .series-card:hover {
+    border-color: #B6C7E0;
+    box-shadow: 0 4px 12px rgba(15, 27, 56, 0.06);
+    transform: translateY(-1px);
+  }
+  .series-card__image {
+    aspect-ratio: 16 / 10;
+    background: linear-gradient(135deg, #E6ECF3 0%, #F1F4F8 100%);
+  }
+  .series-card__body {
+    padding: var(--s-24);
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-12);
+  }
+  .series-card__title {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 1.3;
+    color: var(--gray-dark);
+    margin: 0;
+    letter-spacing: -0.005em;
+  }
+  .series-card:hover .series-card__title { text-decoration: underline; }
+  .series-card__desc {
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--gray-dark);
+    margin: 0;
+  }
+  @media (max-width: 1100px) {
+    .series-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 720px) {
+    .series-grid { grid-template-columns: 1fr; }
+    .blog-tabs { padding: var(--s-24) var(--s-24) 0; gap: 24px; }
+    .blog-tabs button { font-size: 16px; }
+  }
+
+    /* ============ Glossary page ============ */
+  .glossary-alphabet {
+    max-width: 1512px;
+    margin: 0 auto;
+    padding: var(--s-32) var(--s-64) var(--s-16);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 28px;
+    background: var(--white);
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    border-bottom: 1px solid var(--border);
+  }
+  .glossary-alphabet button {
+    background: none;
+    border: none;
+    padding: 0;
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 1;
+    color: #9CA3AF;
+    cursor: pointer;
+    transition: color 0.15s ease;
+  }
+  .glossary-alphabet button:hover:not([disabled]) { color: var(--gray-dark); }
+  .glossary-alphabet button.is-active {
+    color: #0B64DD;
+    font-weight: 700;
+    position: relative;
+  }
+  .glossary-alphabet button.is-active::after {
+    content: '';
+    position: absolute;
+    left: -4px; right: -4px; bottom: -17px;
+    height: 2px;
+    background: #0B64DD;
+  }
+  .glossary-alphabet button[disabled] {
+    color: #D4DAE5;
+    cursor: default;
+  }
+  .glossary-body {
+    max-width: 1512px;
+    margin: 0 auto;
+    padding: var(--s-48) var(--s-64) var(--s-64);
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+  .glossary-letter-card {
+    width: 80px;
+    height: 80px;
+    background: #F1F4F8;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 40px;
+    color: #0B64DD;
+    margin-bottom: 24px;
+  }
+  .glossary-toc {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.4;
+  }
+  .glossary-toc a {
+    color: var(--gray-dark);
+    text-decoration: none;
+    cursor: pointer;
+    transition: color 0.15s ease;
+  }
+  .glossary-toc a:hover { color: #0B64DD; }
+  .glossary-defs {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    max-width: 820px;
+  }
+  .glossary-term { scroll-margin-top: 120px; }
+  .glossary-term__title {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 26px;
+    line-height: 1.3;
+    color: var(--gray-dark);
+    margin: 0 0 12px 0;
+    letter-spacing: -0.005em;
+  }
+  .glossary-term__def {
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--gray-dark);
+    margin: 0;
+  }
+  .glossary-empty {
+    color: var(--gray);
+    font-style: italic;
+  }
+  @media (max-width: 900px) {
+    .glossary-body { grid-template-columns: 1fr; gap: 32px; padding: var(--s-32) var(--s-24); }
+    .glossary-alphabet { padding: var(--s-24); gap: 16px; }
+    .glossary-alphabet button { font-size: 16px; }
+  }
+
+    /* ============ Home page gradient "Get Started" callout banner ============ */
+  .home-callout {
+    background: linear-gradient(90deg, #6EBFB5 0%, #4A8EBF 55%, #5B6FE0 100%);
+    border-radius: 14px;
+    padding: 28px 36px;
+    margin: var(--s-48) 0 var(--s-48) 0;
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+  }
+  .home-callout__content {
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+    flex: 1;
+  }
+  .home-callout__emoji {
+    font-size: 26px;
+    line-height: 1;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .home-callout__text {
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.55;
+    color: #FFFFFF;
+    margin: 0;
+  }
+  .home-callout__text strong {
+    font-weight: 700;
+  }
+  @media (max-width: 900px) {
+    .home-callout { flex-direction: column; align-items: flex-start; gap: 22px; padding: 24px; }
+  }
+
+  /* Start exploring section heading */
+  .explore-title {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 26px;
+    line-height: 1.3;
+    color: var(--gray-dark);
+    margin: 0 0 var(--s-32) 0;
+    letter-spacing: -0.005em;
+  }
+
   .cat-cards {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -459,57 +722,6 @@
   .cat-card:hover .cat-card__title { text-decoration: underline; }
 
   /* Callout (teal→blue gradient) */
-  .callout {
-    background: linear-gradient(90deg, #68BFB3 0%, #5370BB 100%);
-    border-radius: var(--r-10);
-    padding: var(--s-24);
-    display: flex;
-    align-items: center;
-    gap: var(--s-24);
-    margin-bottom: var(--s-64);
-  }
-  .callout__left {
-    display: flex;
-    align-items: center;
-    gap: var(--s-16);
-    flex: 1;
-  }
-  .callout__emoji {
-    font-size: 36px;
-    line-height: 1;
-    flex-shrink: 0;
-  }
-  .callout__text {
-    font-family: var(--font-body);
-    font-size: var(--fs-body);
-    line-height: var(--lh-body);
-    color: #F9FAFA;
-    margin: 0;
-  }
-  .callout__text strong {
-    font-weight: 700;
-  }
-  .btn-outline-yellow {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--s-8);
-    padding: 13px 24px;
-    border: 2px solid var(--yellow-light);
-    border-radius: var(--r-4);
-    background: transparent;
-    color: #F9FAFA;
-    font-family: var(--font-body);
-    font-weight: 700;
-    font-size: var(--fs-link);
-    line-height: var(--lh-link);
-    white-space: nowrap;
-    flex-shrink: 0;
-    transition: background-color 0.15s ease;
-  }
-  .btn-outline-yellow:hover {
-    background-color: rgba(255, 218, 61, 0.15);
-  }
-
   /* Start exploring */
   .explore__title {
     font-family: var(--font-heading);
@@ -657,15 +869,15 @@
     flex-shrink: 0;
   }
   /* ===== Button system (Figma 994:3326 / 3338 / 3350) =====
-     .btn-yellow         → Primary  (blue solid + white)
-     .btn-yellow-outline → Secondary (blue outline)
+     .btn--primary         → Primary  (blue solid + white)
+     .btn--secondary → Secondary (blue outline)
      .btn-tertiary       → Tertiary  (text underline)
      New aliases .btn--primary / .btn--secondary / .btn--tertiary
      are provided so new components can use the cleaner names.
      ============================================================ */
-  .btn-yellow, .btn--primary,
-  .btn-yellow-outline, .btn--secondary,
-  .btn-tertiary, .btn--tertiary {
+  .btn--primary,
+  .btn--secondary,
+  .btn--tertiary {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -684,26 +896,26 @@
     transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
   }
   /* Primary */
-  .btn-yellow, .btn--primary {
+  .btn--primary {
     background: #0B64DD;
     color: #fff;
     border-color: #0B64DD;
   }
-  .btn-yellow:hover, .btn--primary:hover {
+  .btn--primary:hover {
     background: #0855BD;
     border-color: #0855BD;
   }
   /* Secondary */
-  .btn-yellow-outline, .btn--secondary {
+  .btn--secondary {
     background: transparent;
     color: #0B64DD;
     border-color: #0B64DD;
   }
-  .btn-yellow-outline:hover, .btn--secondary:hover {
+  .btn--secondary:hover {
     background: rgba(11, 100, 221, 0.06);
   }
   /* Tertiary */
-  .btn-tertiary, .btn--tertiary {
+  .btn--tertiary {
     background: transparent;
     color: #0B64DD;
     border: none;
@@ -712,7 +924,7 @@
     padding: 0 4px;
     height: auto;
   }
-  .btn-tertiary:hover, .btn--tertiary:hover { color: #0855BD; }
+  .btn--tertiary:hover { color: #0855BD; }
 
   /* =========================================================
      Section 4 — FOOTER (dark)
@@ -764,33 +976,6 @@
     position: relative;
     z-index: 2;
   }
-  .trial-banner__btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 13px 24px;
-    border-radius: 4px;
-    font-family: var(--font-body);
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 24px;
-    color: var(--white);
-    text-decoration: none;
-    transition: background 0.15s ease;
-  }
-  .trial-banner__btn--solid {
-    border: 2px solid var(--white);
-    background: transparent;
-  }
-  .trial-banner__btn--solid:hover { background: rgba(255,255,255,0.1); }
-  .trial-banner__btn--ghost {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 13px 8px;
-  }
-  .trial-banner__btn--ghost svg { width: 20px; height: 12px; }
-  .trial-banner__btn--ghost:hover { opacity: 0.8; }
 
   /* Decorative pattern blobs — abstract CSS-only flourishes since the
      full Figma SVG illustration isn't available. */
@@ -997,7 +1182,6 @@
     .trial-banner__inner { padding: 0 24px; }
     .trial-banner__title { font-size: 28px; }
     .trial-banner__actions { flex-direction: column; width: 100%; }
-    .trial-banner__btn { width: 100%; }
     .footer__main { padding: 48px 0 24px; }
     .footer__main-inner { padding: 0 24px; }
     .footer__grid { grid-template-columns: 1fr; }
@@ -1010,7 +1194,7 @@
      ========================================================= */
   @media (max-width: 1200px) {
     .hero__layout { grid-template-columns: 1fr; }
-    .cat-cards { grid-template-columns: repeat(2, 1fr); }
+      .cat-cards { grid-template-columns: repeat(2, 1fr); }
     .explore__grid { grid-template-columns: 1fr; }
     .newsletter__card { flex-direction: column; align-items: flex-start; }
     .footer__top { flex-direction: column; gap: var(--s-48); }
@@ -1021,8 +1205,7 @@
     .hero__title { font-size: 28px; }
     .featured__image { height: 240px; }
     .featured__title { font-size: 20px; }
-    .cat-cards { grid-template-columns: 1fr; }
-    .callout { flex-direction: column; align-items: flex-start; }
+      .cat-cards { grid-template-columns: 1fr; }
     .newsletter__card { padding: var(--s-32); }
     .newsletter__actions { flex-direction: column; align-items: stretch; gap: var(--s-12); width: 100%; }
     .footer { padding: var(--s-32) var(--s-24) var(--s-24); }
@@ -1045,9 +1228,11 @@
     font-weight: 700;
     font-size: var(--fs-xs);
     letter-spacing: 0.02em;
-    color: var(--gray);
+    color: #0B64DD;
     margin: 0 0 var(--s-16) 0;
   }
+  .article-hero__crumb a { color: inherit; text-decoration: none; }
+  .article-hero__crumb a:hover { text-decoration: underline; }
   .article-hero__title {
     font-family: var(--font-heading);
     font-weight: 700;
@@ -1131,13 +1316,13 @@
     margin: 0 auto;
     padding: 0 var(--s-64);
     display: grid;
-    grid-template-columns: minmax(0, 1fr) 260px;
-    gap: 80px;
+    grid-template-columns: minmax(0, 1fr) 220px;
+    gap: var(--s-48);
     align-items: start;
   }
   .article__main {
     min-width: 0;
-    max-width: 760px;
+    max-width: 920px;
   }
   .article__main h2 {
     font-family: var(--font-heading);
@@ -1356,6 +1541,23 @@
     margin: 0;
   }
   .related-card__title a:hover { text-decoration: underline; }
+  /* Card hover feedback — applies on tag pages and feed grids */
+  .blog-grid .related-card,
+  .author-articles__grid .related-card,
+  .all-articles__grid .related-card,
+  .integrations-grid .related-card,
+  .related__grid .related-card {
+    transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+  }
+  .blog-grid .related-card:hover,
+  .author-articles__grid .related-card:hover,
+  .all-articles__grid .related-card:hover,
+  .integrations-grid .related-card:hover,
+  .related__grid .related-card:hover {
+    border-color: #B6C7E0;
+    box-shadow: 0 6px 18px rgba(28, 30, 35, 0.06);
+    transform: translateY(-1px);
+  }
   .related-card__desc {
     font-family: var(--font-body);
     font-size: var(--fs-small);
@@ -1428,6 +1630,7 @@
     max-width: 760px;
   }
 
+  .subpage-hero__cta { margin-top: var(--s-16); align-self: flex-start; }
   .subpage-body {
     padding: var(--s-64) 0;
     background: var(--white);
@@ -1441,43 +1644,6 @@
     gap: var(--s-32);
     align-items: start;
   }
-
-  /* Sticky Quick Start callout (Tutorials + Examples) */
-  .quickstart-card {
-    position: sticky;
-    top: 120px;
-    background: linear-gradient(180deg, #68BFB3 0%, #5370BB 100%);
-    border-radius: var(--r-10);
-    padding: var(--s-32);
-    color: #F9FAFA;
-    display: flex;
-    flex-direction: column;
-    gap: var(--s-16);
-  }
-  .quickstart-card__wave { font-size: 28px; line-height: 1; }
-  .quickstart-card__text {
-    font-family: var(--font-body);
-    font-size: var(--fs-small);
-    line-height: 1.55;
-    margin: 0;
-  }
-  .quickstart-card__text strong { font-weight: 700; }
-  .quickstart-card__btn {
-    align-self: flex-start;
-    display: inline-flex;
-    align-items: center;
-    gap: var(--s-8);
-    padding: 10px 18px;
-    border: 2px solid var(--yellow-light);
-    border-radius: var(--r-4);
-    color: #F9FAFA;
-    font-family: var(--font-body);
-    font-weight: 700;
-    font-size: var(--fs-small);
-    transition: background-color 0.15s ease;
-  }
-  .quickstart-card__btn:hover { background: rgba(255, 218, 61, 0.15); }
-  .quickstart-card__btn svg { width: 14px; height: 14px; }
 
   /* =========================================================
      Tutorials page — list of tutorial cards
@@ -1688,8 +1854,8 @@
     margin: 0 auto;
     padding: 0 var(--s-64);
     display: grid;
-    grid-template-columns: 200px minmax(0, 1fr);
-    gap: var(--s-48);
+    grid-template-columns: 220px minmax(0, 1fr);
+    gap: 80px;
     align-items: start;
   }
   .blog-categories__label {
@@ -1836,6 +2002,31 @@
     transition: background 0.15s ease;
   }
   .side-nav__subscribe:hover { background: rgba(11,100,221,0.06); }
+  /* 2 side-by-side action buttons at bottom of side-nav (replacement for single Subscribe) */
+  .side-nav__btn-pair {
+    display: flex;
+    gap: var(--s-8);
+    margin-top: var(--s-32);
+  }
+  .side-nav__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 12px;
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--gray-dark);
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.15s ease;
+    white-space: nowrap;
+  }
+  .side-nav__btn:hover { background: #F1F4F8; }
+  .side-nav__btn svg { width: 14px; height: 14px; color: var(--gray); flex-shrink: 0; }
   .side-nav__subscribe svg { width: 14px; height: 14px; }
 
   /* Non-interactive display variant — Search Labs uses this until the
@@ -1953,10 +2144,6 @@
     flex-direction: column;
     gap: var(--s-24);
   }
-  .subpage-hero__cta {
-    margin-top: var(--s-16);
-    align-self: flex-start;
-  }
   .author-articles__title {
     font-family: var(--font-heading);
     font-weight: 700;
@@ -1970,6 +2157,186 @@
     grid-template-columns: repeat(3, 1fr);
     gap: var(--s-24);
   }
+
+  /* Inline link inside subpage-hero subtitle (e.g. "Quick Start" in Integrations hero) */
+
+  /* Integrations 2-column grid (right side of blog-layout on #integrations) */
+  .integrations-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--s-24);
+  }
+  .integrations-grid .related-card {
+    box-shadow: none;
+    border: 1px solid var(--border);
+  }
+  .integrations-grid .related-card__image {
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #F1F4F8;
+  }
+  .integration-card__initials {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 28px;
+    letter-spacing: 0.04em;
+    color: #6B7079;
+  }
+  @media (max-width: 900px) {
+    .integrations-grid { grid-template-columns: 1fr; }
+  }
+
+  /* Integration detail view */
+  .subpage-hero__eyebrow {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    color: var(--blue);
+    margin: 0 0 var(--s-12) 0;
+    text-transform: uppercase;
+  }
+  .integration-detail__main { max-width: 720px; }
+  .integration-detail__lead {
+    font-family: var(--font-body);
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--gray-dark);
+    margin: 0 0 var(--s-32) 0;
+  }
+  .integration-detail__video {
+    aspect-ratio: 16 / 9;
+    width: 100%;
+    background: linear-gradient(135deg, #F1F4F8 0%, #E8ECF1 100%);
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    margin: 0 0 var(--s-32) 0;
+    border: 1px solid var(--border);
+  }
+  .integration-detail__video-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .integration-detail__video-meta {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .integration-detail__video-logo {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #FFFFFF;
+    flex-shrink: 0;
+  }
+  .integration-detail__video-title {
+    margin: 0;
+    color: var(--gray-dark);
+    font-weight: 600;
+    font-size: 14px;
+  }
+  .integration-detail__video-channel {
+    margin: 0;
+    color: var(--gray);
+    font-size: 12px;
+  }
+  .integration-detail__video-play {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: #FF0000;
+    border: none;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.15s ease;
+    z-index: 2;
+  }
+  .integration-detail__video-play:hover { transform: scale(1.05); }
+  .integration-detail__video-play svg { width: 28px; height: 28px; margin-left: 3px; }
+  .integration-detail__video-yt {
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+    color: var(--gray-dark);
+    background: rgba(255,255,255,0.9);
+    padding: 6px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+  }
+  .integration-detail__video-yt span { color: #FF0000; font-weight: 700; }
+
+  .integration-detail__section-title {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 26px;
+    line-height: 1.3;
+    color: var(--gray-dark);
+    margin: var(--s-48) 0 var(--s-16);
+    letter-spacing: -0.005em;
+  }
+  .integration-detail__bloglist {
+    list-style: disc;
+    margin: 0;
+    padding-left: var(--s-24);
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-12);
+  }
+  .integration-detail__bloglist li {
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--gray-dark);
+  }
+  .integration-detail__bloglist a {
+    color: var(--gray-dark);
+    text-decoration: underline;
+    font-weight: 500;
+  }
+  .integration-detail__bloglist a:hover { color: var(--blue); }
+  .integration-detail__body {
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--gray-dark);
+    margin: 0 0 var(--s-16) 0;
+  }
+  /* Detail page side-nav: copy/share buttons at the bottom */
+  .integration-detail__actions {
+    display: flex;
+    gap: var(--s-8);
+    margin-top: var(--s-32);
+  }
+  .integration-detail__action {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 12px;
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--gray-dark);
+    cursor: pointer;
+    transition: background 0.15s ease;
+  }
+  .integration-detail__action:hover { background: #F1F4F8; }
+  .integration-detail__action svg { width: 14px; height: 14px; color: var(--gray); }
   .author-articles__grid .related-card {
     box-shadow: none;
     border: 1px solid var(--border);
@@ -2011,7 +2378,6 @@
   /* Responsive collapse for all subpages */
   @media (max-width: 1100px) {
     .subpage-layout { grid-template-columns: 1fr; }
-    .quickstart-card { position: static; }
     .integration-grid { grid-template-columns: repeat(2, 1fr); }
     .blog-layout { grid-template-columns: 1fr; }
     .blog-feed__featured { grid-template-columns: 1fr; }
@@ -2044,10 +2410,12 @@
     font-weight: 700;
     font-size: var(--fs-xs);
     letter-spacing: 0.04em;
-    color: var(--primary-dark);
+    color: #0B64DD;
     margin: 0 0 var(--s-16) 0;
     text-transform: uppercase;
   }
+  .tutorial-hero__crumb a { color: inherit; text-decoration: none; }
+  .tutorial-hero__crumb a:hover { text-decoration: underline; }
   .tutorial-hero__crumb .sep {
     color: var(--gray);
     margin: 0 var(--s-8);
@@ -2094,42 +2462,52 @@
   }
   .tutorial-sidebar__label {
     font-family: var(--font-mono);
-    font-weight: 700;
-    font-size: var(--fs-xs);
-    letter-spacing: 0.04em;
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.08em;
     color: var(--gray);
     margin: 0 0 var(--s-16) 0;
     text-transform: uppercase;
   }
+  /* Tutorial / Example article side-nav (flat list of all siblings)
+     Matches the .side-nav visual language: plain rows, blue active, mono caps groups */
   .tutorial-toc {
     display: flex;
     flex-direction: column;
-    gap: var(--s-8);
+    gap: 14px;
     font-family: var(--font-body);
-    font-size: var(--fs-small);
+    font-size: 15px;
+    font-weight: 500;
     line-height: 1.4;
   }
   .tutorial-toc a {
     color: var(--gray-dark);
-    padding: 4px 0;
+    text-decoration: none;
     display: block;
+    transition: color 0.15s ease;
   }
-  .tutorial-toc a:hover { text-decoration: underline; }
+  .tutorial-toc a:hover { color: var(--black); }
   .tutorial-toc a.is-active {
-    color: #C7900E;
+    color: var(--blue);
     font-weight: 700;
   }
   .tutorial-toc__group {
-    font-weight: 700;
-    color: var(--gray-dark);
-    padding: var(--s-8) 0 var(--s-4);
-    margin-top: var(--s-4);
+    font-family: var(--font-mono);
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-top: 12px;
+    padding-bottom: 4px;
   }
+  .tutorial-toc__group:first-child { margin-top: 0; }
   .tutorial-toc__sub {
     padding-left: var(--s-16);
     display: flex;
     flex-direction: column;
-    gap: var(--s-8);
+    gap: 10px;
+    border-left: 1px solid var(--border);
   }
 
   .tutorial-sidebar__share {
@@ -2144,7 +2522,7 @@
   .tutorial-sidebar__share svg { width: 18px; height: 18px; }
 
   /* Main content */
-  .tutorial-content { min-width: 0; max-width: 760px; }
+  .tutorial-content { min-width: 0; max-width: 920px; }
   .tutorial-content article > * { margin-top: 0; }
   .tutorial-content p {
     font-family: var(--font-body);
@@ -2344,7 +2722,7 @@
     margin: 0;
     text-transform: uppercase;
   }
-  .obs-filter-sidebar .btn-yellow-outline { justify-content: center; }
+  .obs-filter-sidebar .btn--secondary { justify-content: center; }
 
   /* Clickable chips + author links — applied across Observability views */
   a.chip { cursor: pointer; transition: background-color 0.15s ease; }
@@ -2514,19 +2892,6 @@
     .gnav__search:hover { background: #FFF5F9; }
     .gnav__search-icon { width: 18px; height: 18px; color: #1C1E23; flex-shrink: 0; }
 
-    .gnav__btn {
-      display: inline-flex; align-items: center; justify-content: center;
-      height: 40px; padding: 0 24px;
-      border-radius: 4px;
-      font-family: 'Mier B', 'Inter', system-ui, sans-serif;
-      font-weight: 700; font-size: 16px; line-height: 1;
-      text-decoration: none;
-      white-space: nowrap;
-    }
-    .gnav__btn--primary { background: #0B64DD; color: #fff; border: 1px solid #0B64DD; }
-    .gnav__btn--primary:hover { background: #0855BD; border-color: #0855BD; }
-    .gnav__btn--outline { background: transparent; color: #0B64DD; border: 1px solid #0B64DD; }
-    .gnav__btn--outline:hover { background: rgba(11, 100, 221, 0.06); }
 
     @media (max-width: 1200px) {
       .gnav__upper-inner,
@@ -2542,7 +2907,6 @@
       .gnav__util-divider { display: none; }
       .gnav__search span { display: none; }
       .gnav__search { padding: 0 12px; }
-      .gnav__btn--outline { display: none; }
       .gnav__marquee-text { display: none; }
     }
 </style>
@@ -2619,8 +2983,8 @@
               </svg>
               <span>Search</span>
             </a>
-            <a href="#" class="gnav__btn gnav__btn--primary">Start free trial</a>
-            <a href="#" class="gnav__btn gnav__btn--outline">Contact sales</a>
+            <a href="#" class="btn--primary">Start free trial</a>
+            <a href="#" class="btn--secondary">Contact sales</a>
           </div>
         </div>
       </div>
@@ -2794,30 +3158,25 @@
       </a>
     </div>
 
-    <!-- Gradient callout -->
-    <div class="callout">
-      <div class="callout__left">
-        <span class="callout__emoji" aria-hidden="true">👋</span>
-        <p class="callout__text">Are you brand new to Elastic? Visit the quick start guide in <strong>Elasticsearch Docs</strong> to help you grasp our terminology, concepts, and build the foundation for the next-level search experience Search Labs is for.</p>
+    <!-- Gradient callout: Get Started -->
+    <div class="home-callout">
+      <div class="home-callout__content">
+        <span class="home-callout__emoji" aria-hidden="true">👋</span>
+        <p class="home-callout__text">Are you brand new to Elastic? Visit the quick start guide in <strong>Elasticsearch Docs</strong> to help you grasp our terminology, concepts, and build the foundation for the next-level search experience Search Labs is for.</p>
       </div>
-      <a href="#" class="btn-outline-yellow">
-        <span>Elasticsearch Quick Start</span>
-        <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </a>
+      <a href="javascript:void(0)" class="btn--primary">Elasticsearch Quick Start</a>
     </div>
 
-    <!-- Start exploring -->
-    <h2 class="explore__title">Start exploring</h2>
+    <h2 class="explore-title">Start exploring</h2>
 
+    <!-- Explore grid: Examples (flat list) + Integrations (card) -->
     <div class="explore__grid">
 
-      <!-- Examples column -->
+      <!-- Examples column (flat list, no card border) -->
       <div>
         <div class="explore-col__head">
           <h3 class="explore-col__title">Examples</h3>
-          <a href="#" class="view-all">
+          <a href="#examples" class="view-all">
             <span>View all</span>
             <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -2825,10 +3184,6 @@
           </a>
         </div>
         <div class="explore-card">
-          <div class="explore-row">
-            <a href="#article" class="explore-row__link">Duis aute irure dolor in reprehenderit</a>
-            <div class="explore-row__chips"><span class="chip">Lucene</span></div>
-          </div>
           <div class="explore-row">
             <a href="#article" class="explore-row__link">Excepteur sint occaecat cupidatat</a>
             <div class="explore-row__chips">
@@ -2891,6 +3246,7 @@
       </div>
 
     </div>
+
     </div><!-- /.container -->
   </section>
 
@@ -3192,13 +3548,10 @@
                 <li class="side-nav__item"><a href="#" class="side-nav__row">Prometheus</a></li>
               </ul>
             </div>
-            <a href="#" class="side-nav__subscribe">
-              Subscribe
-              <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path d="M3 3a10 10 0 0110 10M3 8a5 5 0 015 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-                <circle cx="3.5" cy="12.5" r="1" fill="currentColor"/>
-              </svg>
-            </a>
+            <div class="side-nav__btn-pair">
+            <button type="button" class="side-nav__btn"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="5" y="5" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M11 5V3.5A1.5 1.5 0 009.5 2H3.5A1.5 1.5 0 002 3.5v6A1.5 1.5 0 003.5 11H5" stroke="currentColor" stroke-width="1.5"/></svg>Copy</button>
+            <button type="button" class="side-nav__btn"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M3 8l5-5m0 0l5 5M8 3v10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Share</button>
+          </div>
           </nav>
           </aside>
           <main class="blog-feed">
@@ -3347,14 +3700,6 @@
           </div>
         </main>
       <aside>
-        <div class="quickstart-card">
-          <span class="quickstart-card__wave" aria-hidden="true">👋</span>
-          <p class="quickstart-card__text">Are you brand new to Elastic? Visit the quick start guide in <strong>Elasticsearch Docs</strong> to help you grasp our terminology, concepts, and build the foundation for the next-level search experience Search Labs is for.</p>
-          <a href="#" class="quickstart-card__btn">
-            <span>Quick Start</span>
-            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M6 3H3v10h10v-3M9 3h4v4M9 8l4-5"/></svg>
-          </a>
-        </div>
       </aside>
       </div>
     </section>
@@ -3434,84 +3779,269 @@
           </div>
         </main>
       <aside>
-        <div class="quickstart-card">
-          <span class="quickstart-card__wave" aria-hidden="true">👋</span>
-          <p class="quickstart-card__text">Are you brand new to Elastic? Visit the quick start guide in <strong>Elasticsearch Docs</strong> to help you grasp our terminology, concepts, and build the foundation for the next-level search experience Search Labs is for.</p>
-          <a href="#" class="quickstart-card__btn">
-            <span>Quick Start</span>
-            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M6 3H3v10h10v-3M9 3h4v4M9 8l4-5"/></svg>
-          </a>
-        </div>
       </aside>
       </div>
     </section>
   </div><!-- /#page-examples -->
 
   <!-- =================== INTEGRATIONS PAGE =================== -->
-  <div id="page-integrations" class="page-view" hidden>
+    <div id="page-integrations" class="page-view" hidden>
+
     <section class="subpage-hero">
       <div class="subpage-hero__inner">
         <h1 class="subpage-hero__title">Integrations</h1>
         <p class="subpage-hero__subtitle">Seamlessly connect with leading AI and machine learning platforms to enhance your search capabilities and drive powerful, intelligent applications with Elasticsearch.</p>
       </div>
     </section>
+
     <section class="subpage-body">
-      <div class="integration-filters">
-        <button class="filter-pill is-active">All integrations</button>
-        <button class="filter-pill">Model Providers</button>
-        <button class="filter-pill">RAG Development Frameworks</button>
-      </div>
-      <div class="integration-grid">
-        <a href="#integration:huggingface" class="integration-card">
-          <div class="integration-card__head">
-            <div class="integration-card__logo logo-huggingface">🤗</div>
-            <h3 class="integration-card__name">Hugging Face</h3>
+      <div class="blog-layout">
+        <aside>
+          <nav class="side-nav" aria-label="Categories">
+
+            <div class="side-nav__group">
+              <button type="button" class="side-nav__group-label" aria-expanded="true">
+                Categories
+                <svg class="side-nav__chevron" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+              <ul class="side-nav__list">
+                <li class="side-nav__item"><a href="javascript:void(0)" class="side-nav__row is-active">All Integrations</a></li>
+                <li class="side-nav__item"><a href="javascript:void(0)" class="side-nav__row">Model Providers</a></li>
+                <li class="side-nav__item"><a href="javascript:void(0)" class="side-nav__row">RAG Development Frameworks</a></li>
+                <li class="side-nav__item"><a href="javascript:void(0)" class="side-nav__row">ETL and Data Prep</a></li>
+              </ul>
+            </div>
+
+            <div class="side-nav__btn-pair">
+            <button type="button" class="side-nav__btn"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="5" y="5" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M11 5V3.5A1.5 1.5 0 009.5 2H3.5A1.5 1.5 0 002 3.5v6A1.5 1.5 0 003.5 11H5" stroke="currentColor" stroke-width="1.5"/></svg>Copy</button>
+            <button type="button" class="side-nav__btn"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M3 8l5-5m0 0l5 5M8 3v10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Share</button>
           </div>
-          <p class="integration-card__desc">Open source hub dedicated to AI/ML models and tools. Seamlessly integrate Hugging Face and Elasticsearch by leveraging the transformers library or deploying available models directly in Elasticsearch.</p>
-          <p class="integration-card__category">MODEL PROVIDERS</p>
-        </a>
-        <a href="#integration:openai" class="integration-card">
-          <div class="integration-card__head">
-            <div class="integration-card__logo logo-openai">O</div>
-            <h3 class="integration-card__name">OpenAI</h3>
+
+          </nav>
+        </aside>
+        <main>
+          <div class="integrations-grid">
+            <article class="related-card">
+              <div class="related-card__image" role="img" aria-label="Alibaba Cloud logo placeholder">
+                <span class="integration-card__initials">AC</span>
+              </div>
+              <div class="related-card__body">
+                <div class="related-card__meta">
+                  <a href="javascript:void(0)" class="chip">Model Providers</a>
+                </div>
+                <h3 class="related-card__title"><a href="#integration">Alibaba Cloud</a></h3>
+                <p class="related-card__desc">A complete suite of cloud services including elastic computing, database, storage, security, big data analytics, ML and AI services.</p>
+              </div>
+            </article>
+            <article class="related-card">
+              <div class="related-card__image" role="img" aria-label="Amazon Bedrock logo placeholder">
+                <span class="integration-card__initials">AB</span>
+              </div>
+              <div class="related-card__body">
+                <div class="related-card__meta">
+                  <a href="javascript:void(0)" class="chip">Model Providers</a>
+                </div>
+                <h3 class="related-card__title"><a href="#integration">Amazon Bedrock</a></h3>
+                <p class="related-card__desc">Fully managed service offering high-performing foundation models from leading AI companies through a single API.</p>
+              </div>
+            </article>
+            <article class="related-card">
+              <div class="related-card__image" role="img" aria-label="Anthropic logo placeholder">
+                <span class="integration-card__initials">A</span>
+              </div>
+              <div class="related-card__body">
+                <div class="related-card__meta">
+                  <a href="javascript:void(0)" class="chip">Model Providers</a>
+                </div>
+                <h3 class="related-card__title"><a href="#integration">Anthropic</a></h3>
+                <p class="related-card__desc">AI lab whose research and products put safety at the frontier. Maker of Claude, a family of foundational AI models for enterprise.</p>
+              </div>
+            </article>
+            <article class="related-card">
+              <div class="related-card__image" role="img" aria-label="Cohere logo placeholder">
+                <span class="integration-card__initials">C</span>
+              </div>
+              <div class="related-card__body">
+                <div class="related-card__meta">
+                  <a href="javascript:void(0)" class="chip">Model Providers</a>
+                </div>
+                <h3 class="related-card__title"><a href="#integration">Cohere</a></h3>
+                <p class="related-card__desc">Builds models for use cases such as embeddings and reranking, used by companies to build production-ready, scalable AI applications.</p>
+              </div>
+            </article>
+            <article class="related-card">
+              <div class="related-card__image" role="img" aria-label="Google Vertex AI logo placeholder">
+                <span class="integration-card__initials">G</span>
+              </div>
+              <div class="related-card__body">
+                <div class="related-card__meta">
+                  <a href="javascript:void(0)" class="chip">Model Providers</a>
+                </div>
+                <h3 class="related-card__title"><a href="#integration">Google Vertex AI</a></h3>
+                <p class="related-card__desc">Fully-managed AI development platform with access to Vertex AI Studio, Agent Builder, and 150+ foundation models including Gemini.</p>
+              </div>
+            </article>
+            <article class="related-card">
+              <div class="related-card__image" role="img" aria-label="Hugging Face logo placeholder">
+                <span class="integration-card__initials">HF</span>
+              </div>
+              <div class="related-card__body">
+                <div class="related-card__meta">
+                  <a href="javascript:void(0)" class="chip">Model Providers</a>
+                </div>
+                <h3 class="related-card__title"><a href="#integration">Hugging Face</a></h3>
+                <p class="related-card__desc">Open-source hub for AI/ML models and tools. Seamlessly integrate with Elasticsearch via the transformers library.</p>
+              </div>
+            </article>
+            <article class="related-card">
+              <div class="related-card__image" role="img" aria-label="IBM watsonx logo placeholder">
+                <span class="integration-card__initials">IB</span>
+              </div>
+              <div class="related-card__body">
+                <div class="related-card__meta">
+                  <a href="javascript:void(0)" class="chip">Model Providers</a>
+                </div>
+                <h3 class="related-card__title"><a href="#integration">IBM watsonx</a></h3>
+                <p class="related-card__desc">AI and data platform offering machine learning models for text embeddings and text completion, designed to scale AI impact.</p>
+              </div>
+            </article>
+            <article class="related-card">
+              <div class="related-card__image" role="img" aria-label="Jina AI logo placeholder">
+                <span class="integration-card__initials">JA</span>
+              </div>
+              <div class="related-card__body">
+                <div class="related-card__meta">
+                  <a href="javascript:void(0)" class="chip">Model Providers</a>
+                </div>
+                <h3 class="related-card__title"><a href="#integration">Jina AI</a></h3>
+                <p class="related-card__desc">Develops compact, high-performance Search Foundation models for multilingual text and image processing.</p>
+              </div>
+            </article>
+            <article class="related-card">
+              <div class="related-card__image" role="img" aria-label="Microsoft Azure AI logo placeholder">
+                <span class="integration-card__initials">MA</span>
+              </div>
+              <div class="related-card__body">
+                <div class="related-card__meta">
+                  <a href="javascript:void(0)" class="chip">Model Providers</a>
+                </div>
+                <h3 class="related-card__title"><a href="#integration">Microsoft Azure AI</a></h3>
+                <p class="related-card__desc">REST API access to OpenAI models plus a catalog of hundreds of models from Mistral, Meta, Cohere, Nvidia, and Hugging Face.</p>
+              </div>
+            </article>
+            <article class="related-card">
+              <div class="related-card__image" role="img" aria-label="Mistral logo placeholder">
+                <span class="integration-card__initials">M</span>
+              </div>
+              <div class="related-card__body">
+                <div class="related-card__meta">
+                  <a href="javascript:void(0)" class="chip">Model Providers</a>
+                </div>
+                <h3 class="related-card__title"><a href="#integration">Mistral</a></h3>
+                <p class="related-card__desc">Open, efficient, helpful and trustworthy AI models through ground-breaking innovations in foundation model research.</p>
+              </div>
+            </article>
+            <article class="related-card">
+              <div class="related-card__image" role="img" aria-label="OpenAI logo placeholder">
+                <span class="integration-card__initials">OA</span>
+              </div>
+              <div class="related-card__body">
+                <div class="related-card__meta">
+                  <a href="javascript:void(0)" class="chip">Model Providers</a>
+                </div>
+                <h3 class="related-card__title"><a href="#integration">OpenAI</a></h3>
+                <p class="related-card__desc">Integrate OpenAI with Elastic by leveraging embedding models, the chat completions API, or other advanced integration options.</p>
+              </div>
+            </article>
+            <article class="related-card">
+              <div class="related-card__image" role="img" aria-label="Red Hat logo placeholder">
+                <span class="integration-card__initials">RH</span>
+              </div>
+              <div class="related-card__body">
+                <div class="related-card__meta">
+                  <a href="javascript:void(0)" class="chip">Model Providers</a>
+                </div>
+                <h3 class="related-card__title"><a href="#integration">Red Hat</a></h3>
+                <p class="related-card__desc">Openshift AI is a flexible AI/ML platform enabling enterprises to create and deliver AI-enabled applications at scale across hybrid clouds.</p>
+              </div>
+            </article>
+            <article class="related-card">
+              <div class="related-card__image" role="img" aria-label="NVIDIA logo placeholder">
+                <span class="integration-card__initials">NV</span>
+              </div>
+              <div class="related-card__body">
+                <div class="related-card__meta">
+                  <a href="javascript:void(0)" class="chip">Model Providers</a>
+                </div>
+                <h3 class="related-card__title"><a href="#integration">NVIDIA</a></h3>
+                <p class="related-card__desc">cuVS for GPU-accelerated vector search and NVIDIA NIM for self-hosted GPU-accelerated inferencing microservices.</p>
+              </div>
+            </article>
+            <article class="related-card">
+              <div class="related-card__image" role="img" aria-label="LangChain logo placeholder">
+                <span class="integration-card__initials">LC</span>
+              </div>
+              <div class="related-card__body">
+                <div class="related-card__meta">
+                  <a href="javascript:void(0)" class="chip">RAG Development Frameworks</a>
+                </div>
+                <h3 class="related-card__title"><a href="#integration">LangChain</a></h3>
+                <p class="related-card__desc">Use LangChain ElasticsearchStore, self-query retriever, ElasticsearchRetriever, and more for retrieval-augmented generation workflows.</p>
+              </div>
+            </article>
+            <article class="related-card">
+              <div class="related-card__image" role="img" aria-label="LlamaIndex logo placeholder">
+                <span class="integration-card__initials">LI</span>
+              </div>
+              <div class="related-card__body">
+                <div class="related-card__meta">
+                  <a href="javascript:void(0)" class="chip">RAG Development Frameworks</a>
+                </div>
+                <h3 class="related-card__title"><a href="#integration">LlamaIndex</a></h3>
+                <p class="related-card__desc">Use LlamaIndex with Elastic as a data source, embedding model, vector store, index store, KV store, or document store.</p>
+              </div>
+            </article>
+            <article class="related-card">
+              <div class="related-card__image" role="img" aria-label="Aryn logo placeholder">
+                <span class="integration-card__initials">AR</span>
+              </div>
+              <div class="related-card__body">
+                <div class="related-card__meta">
+                  <a href="javascript:void(0)" class="chip">RAG Development Frameworks</a>
+                </div>
+                <h3 class="related-card__title"><a href="#integration">Aryn</a></h3>
+                <p class="related-card__desc">AI-powered document parsing and ETL for complex, unstructured data. Process PDFs, HTML, presentations and 30+ file formats.</p>
+              </div>
+            </article>
+            <article class="related-card">
+              <div class="related-card__image" role="img" aria-label="Unstructured.io logo placeholder">
+                <span class="integration-card__initials">UN</span>
+              </div>
+              <div class="related-card__body">
+                <div class="related-card__meta">
+                  <a href="javascript:void(0)" class="chip">ETL and Data Prep</a>
+                </div>
+                <h3 class="related-card__title"><a href="#integration">Unstructured.io</a></h3>
+                <p class="related-card__desc">Tools to ingest and preprocess unstructured documents for Retrieval Augmented Generation and Fine Tuning workflows.</p>
+              </div>
+            </article>
+            <article class="related-card">
+              <div class="related-card__image" role="img" aria-label="Vectorize.io logo placeholder">
+                <span class="integration-card__initials">VE</span>
+              </div>
+              <div class="related-card__body">
+                <div class="related-card__meta">
+                  <a href="javascript:void(0)" class="chip">ETL and Data Prep</a>
+                </div>
+                <h3 class="related-card__title"><a href="#integration">Vectorize.io</a></h3>
+                <p class="related-card__desc">Optimize your RAG workflows with Elasticsearch as the vector database. Built for production-grade retrieval pipelines.</p>
+              </div>
+            </article>
           </div>
-          <p class="integration-card__desc">Use OpenAI's embedding and chat models with Elasticsearch through native inference endpoints — no infrastructure to manage.</p>
-          <p class="integration-card__category">MODEL PROVIDERS</p>
-        </a>
-        <a href="#integration:google" class="integration-card">
-          <div class="integration-card__head">
-            <div class="integration-card__logo ">G</div>
-            <h3 class="integration-card__name">Google</h3>
-          </div>
-          <p class="integration-card__desc">Connect Vertex AI and Gemini models to Elasticsearch as inference endpoints, with strict request quotas and IAM auth out of the box.</p>
-          <p class="integration-card__category">MODEL PROVIDERS</p>
-        </a>
-        <a href="#integration:cohere" class="integration-card">
-          <div class="integration-card__head">
-            <div class="integration-card__logo logo-cohere">C</div>
-            <h3 class="integration-card__name">Cohere</h3>
-          </div>
-          <p class="integration-card__desc">Cohere's embed and rerank models plug directly into Elasticsearch retrieval pipelines for high-quality semantic search and reranking.</p>
-          <p class="integration-card__category">RAG DEVELOPMENT FRAMEWORKS</p>
-        </a>
-        <a href="#integration:llamaindex" class="integration-card">
-          <div class="integration-card__head">
-            <div class="integration-card__logo ">🦙</div>
-            <h3 class="integration-card__name">LlamaIndex</h3>
-          </div>
-          <p class="integration-card__desc">Build LLM-powered apps on Elasticsearch with LlamaIndex's data framework — indexing, querying, and orchestration tools designed for RAG.</p>
-          <p class="integration-card__category">RAG DEVELOPMENT FRAMEWORKS</p>
-        </a>
-        <a href="#integration:langchain" class="integration-card">
-          <div class="integration-card__head">
-            <div class="integration-card__logo ">🔗</div>
-            <h3 class="integration-card__name">LangChain</h3>
-          </div>
-          <p class="integration-card__desc">Use Elasticsearch as a vector store inside LangChain to compose retrieval-augmented generation pipelines with minimal glue code.</p>
-          <p class="integration-card__category">RAG DEVELOPMENT FRAMEWORKS</p>
-        </a>
+        </main>
       </div>
     </section>
+
   </div><!-- /#page-integrations -->
 
   <!-- =================== BLOG PAGE =================== -->
@@ -3522,10 +4052,20 @@
         <p class="subpage-hero__subtitle">Developer insights and practical how-to articles from our experts to inspire and empower your search experience</p>
       </div>
     </section>
+
+    <!-- Tab ribbon: Articles / Series (uses glossary alphabet pattern) -->
+    <nav class="blog-tabs" id="blog-tabs" aria-label="Blog view">
+      <button type="button" class="is-active" data-blog-tab="articles">Articles</button>
+      <button type="button" data-blog-tab="series">Series</button>
+    </nav>
+
     <section class="subpage-body">
+
+      <!-- Articles tab (default) -->
+      <div data-blog-tab-panel="articles">
       <div class="blog-layout">
         <aside>
-          <nav class="side-nav is-disabled" aria-label="Categories">
+          <nav class="side-nav" aria-label="Categories">
 
             <div class="side-nav__group">
               <button type="button" class="side-nav__group-label" aria-expanded="true">
@@ -3533,75 +4073,71 @@
                 <svg class="side-nav__chevron" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </button>
               <ul class="side-nav__list">
-                <li class="side-nav__item"><a href="#" class="side-nav__row is-active">All Blogs</a></li>
-
-                <li class="side-nav__item">
-                  <button type="button" class="side-nav__row" aria-expanded="false">
+                <li class="side-nav__item"><a href="javascript:void(0)" class="side-nav__row is-active">All Blogs</a></li>
+                <li class="side-nav__item is-open">
+                  <button type="button" class="side-nav__row" aria-expanded="true">
                     AI
                     <svg class="side-nav__chevron" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
                   </button>
                   <ul class="side-nav__sublist">
-                    <li><a href="#" class="side-nav__row">Agents</a></li>
-                    <li><a href="#" class="side-nav__row">Retrieval</a></li>
-                    <li><a href="#" class="side-nav__row">Embeddings</a></li>
+                    <li><a href="javascript:void(0)" class="side-nav__row">AI tools</a></li>
+                    <li><a href="javascript:void(0)" class="side-nav__row">Agentic AI</a></li>
+                    <li><a href="javascript:void(0)" class="side-nav__row">ML Research</a></li>
                   </ul>
                 </li>
-
-                <li class="side-nav__item"><a href="#" class="side-nav__row">Developer Experience</a></li>
-                <li class="side-nav__item"><a href="#" class="side-nav__row">Elastic Cloud Hosted</a></li>
-                <li class="side-nav__item"><a href="#" class="side-nav__row">Elastic Cloud Serverless</a></li>
-
+                <li class="side-nav__item"><a href="javascript:void(0)" class="side-nav__row">Developer Experience</a></li>
+                <li class="side-nav__item"><a href="javascript:void(0)" class="side-nav__row">Elastic Cloud Hosted</a></li>
+                <li class="side-nav__item"><a href="javascript:void(0)" class="side-nav__row">Elastic Cloud Serverless</a></li>
                 <li class="side-nav__item">
                   <button type="button" class="side-nav__row" aria-expanded="false">
                     Hybrid Search
                     <svg class="side-nav__chevron" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
                   </button>
                   <ul class="side-nav__sublist">
-                    <li><a href="#" class="side-nav__row">Lexical &amp; vector</a></li>
-                    <li><a href="#" class="side-nav__row">Reciprocal rank fusion</a></li>
+                    <li><a href="javascript:void(0)" class="side-nav__row">Lorem search</a></li>
+                    <li><a href="javascript:void(0)" class="side-nav__row">Ipsum ranking</a></li>
+                    <li><a href="javascript:void(0)" class="side-nav__row">Dolor relevance</a></li>
                   </ul>
                 </li>
-
                 <li class="side-nav__item">
                   <button type="button" class="side-nav__row" aria-expanded="false">
                     Index Data
                     <svg class="side-nav__chevron" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
                   </button>
                   <ul class="side-nav__sublist">
-                    <li><a href="#" class="side-nav__row">Ingest pipelines</a></li>
-                    <li><a href="#" class="side-nav__row">Mappings</a></li>
+                    <li><a href="javascript:void(0)" class="side-nav__row">Ingest pipelines</a></li>
+                    <li><a href="javascript:void(0)" class="side-nav__row">Mappings</a></li>
+                    <li><a href="javascript:void(0)" class="side-nav__row">Bulk operations</a></li>
                   </ul>
                 </li>
-
-                <li class="side-nav__item"><a href="#" class="side-nav__row">Inside Elastic</a></li>
-                <li class="side-nav__item"><a href="#" class="side-nav__row">Integrations</a></li>
-                <li class="side-nav__item"><a href="#" class="side-nav__row">Jina AI</a></li>
-                <li class="side-nav__item"><a href="#" class="side-nav__row">Lucene</a></li>
-
+                <li class="side-nav__item"><a href="javascript:void(0)" class="side-nav__row">Inside Elastic</a></li>
+                <li class="side-nav__item"><a href="javascript:void(0)" class="side-nav__row">Integrations</a></li>
+                <li class="side-nav__item"><a href="javascript:void(0)" class="side-nav__row">Jina AI</a></li>
+                <li class="side-nav__item"><a href="javascript:void(0)" class="side-nav__row">Lucene</a></li>
                 <li class="side-nav__item">
                   <button type="button" class="side-nav__row" aria-expanded="false">
                     Operations
                     <svg class="side-nav__chevron" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
                   </button>
                   <ul class="side-nav__sublist">
-                    <li><a href="#" class="side-nav__row">Scaling</a></li>
-                    <li><a href="#" class="side-nav__row">Monitoring</a></li>
+                    <li><a href="javascript:void(0)" class="side-nav__row">Scaling</a></li>
+                    <li><a href="javascript:void(0)" class="side-nav__row">Monitoring</a></li>
+                    <li><a href="javascript:void(0)" class="side-nav__row">Performance</a></li>
                   </ul>
                 </li>
-
                 <li class="side-nav__item">
                   <button type="button" class="side-nav__row" aria-expanded="false">
                     Query Languages
                     <svg class="side-nav__chevron" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
                   </button>
                   <ul class="side-nav__sublist">
-                    <li><a href="#" class="side-nav__row">ES|QL</a></li>
-                    <li><a href="#" class="side-nav__row">DSL</a></li>
-                    <li><a href="#" class="side-nav__row">SQL</a></li>
+                    <li><a href="javascript:void(0)" class="side-nav__row">ES|QL</a></li>
+                    <li><a href="javascript:void(0)" class="side-nav__row">DSL</a></li>
+                    <li><a href="javascript:void(0)" class="side-nav__row">SQL</a></li>
+                    <li><a href="javascript:void(0)" class="side-nav__row">KQL</a></li>
                   </ul>
                 </li>
-
-                <li class="side-nav__item"><a href="#" class="side-nav__row">Vector Database</a></li>
+                <li class="side-nav__item"><a href="javascript:void(0)" class="side-nav__row">Vector Database</a></li>
               </ul>
             </div>
 
@@ -3611,21 +4147,43 @@
                 <svg class="side-nav__chevron" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </button>
               <ul class="side-nav__list">
-                <li class="side-nav__item"><a href="#" class="side-nav__row">Python</a></li>
-                <li class="side-nav__item"><a href="#" class="side-nav__row">JavaScript</a></li>
-                <li class="side-nav__item"><a href="#" class="side-nav__row">Go</a></li>
-                <li class="side-nav__item"><a href="#" class="side-nav__row">Java</a></li>
-                <li class="side-nav__item"><a href="#" class="side-nav__row">Ruby</a></li>
+                <li class="side-nav__item"><a href="javascript:void(0)" class="side-nav__row">Python</a></li>
+                <li class="side-nav__item"><a href="javascript:void(0)" class="side-nav__row">JavaScript</a></li>
+                <li class="side-nav__item"><a href="javascript:void(0)" class="side-nav__row">TypeScript</a></li>
+                <li class="side-nav__item">
+                  <button type="button" class="side-nav__row" aria-expanded="false">
+                    Java
+                    <svg class="side-nav__chevron" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </button>
+                  <ul class="side-nav__sublist">
+                    <li><a href="javascript:void(0)" class="side-nav__row">Spring</a></li>
+                    <li><a href="javascript:void(0)" class="side-nav__row">Quarkus</a></li>
+                    <li><a href="javascript:void(0)" class="side-nav__row">Plain JVM</a></li>
+                  </ul>
+                </li>
+                <li class="side-nav__item"><a href="javascript:void(0)" class="side-nav__row">Go</a></li>
+                <li class="side-nav__item"><a href="javascript:void(0)" class="side-nav__row">Ruby</a></li>
+                <li class="side-nav__item"><a href="javascript:void(0)" class="side-nav__row">Rust</a></li>
+                <li class="side-nav__item"><a href="javascript:void(0)" class="side-nav__row">PHP</a></li>
+                <li class="side-nav__item">
+                  <button type="button" class="side-nav__row" aria-expanded="false">
+                    .NET
+                    <svg class="side-nav__chevron" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </button>
+                  <ul class="side-nav__sublist">
+                    <li><a href="javascript:void(0)" class="side-nav__row">C#</a></li>
+                    <li><a href="javascript:void(0)" class="side-nav__row">F#</a></li>
+                    <li><a href="javascript:void(0)" class="side-nav__row">VB.NET</a></li>
+                  </ul>
+                </li>
+                <li class="side-nav__item"><a href="javascript:void(0)" class="side-nav__row">Swift</a></li>
               </ul>
             </div>
 
-            <a href="#" class="side-nav__subscribe">
-              Subscribe
-              <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path d="M3 3a10 10 0 0110 10M3 8a5 5 0 015 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-                <circle cx="3.5" cy="12.5" r="1" fill="currentColor"/>
-              </svg>
-            </a>
+            <div class="side-nav__btn-pair">
+            <button type="button" class="side-nav__btn"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="5" y="5" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M11 5V3.5A1.5 1.5 0 009.5 2H3.5A1.5 1.5 0 002 3.5v6A1.5 1.5 0 003.5 11H5" stroke="currentColor" stroke-width="1.5"/></svg>Copy</button>
+            <button type="button" class="side-nav__btn"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M3 8l5-5m0 0l5 5M8 3v10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Share</button>
+          </div>
 
           </nav>
         </aside>
@@ -3720,8 +4278,154 @@
           </div>
         </main>
       </div>
+      </div><!-- /[data-blog-tab-panel="articles"] -->
+
+      <!-- Series tab -->
+      <div data-blog-tab-panel="series" hidden>
+        <div class="series-grid">
+          <a href="#article" class="series-card">
+            <div class="series-card__image"></div>
+            <div class="series-card__body">
+              <h3 class="series-card__title">Advanced RAG techniques</h3>
+              <p class="series-card__desc">In this series, we'll discuss and implement techniques that may increase RAG performance.</p>
+            </div>
+          </a>
+          <a href="#article" class="series-card">
+            <div class="series-card__image"></div>
+            <div class="series-card__body">
+              <h3 class="series-card__title">Context-Aware AI Agentic workflows with Elastic</h3>
+              <p class="series-card__desc">Learn about building context-aware AI agents with Elastic's new Agent Builder platform and orchestration tools.</p>
+            </div>
+          </a>
+          <a href="#article" class="series-card">
+            <div class="series-card__image"></div>
+            <div class="series-card__body">
+              <h3 class="series-card__title">Creating an LLM Agent newsroom with A2A protocol and MCP in Elasticsearch</h3>
+              <p class="series-card__desc">Explore the concepts of A2A protocol and MCP and build an LLM agent newsroom from scratch.</p>
+            </div>
+          </a>
+          <a href="#article" class="series-card">
+            <div class="series-card__image"></div>
+            <div class="series-card__body">
+              <h3 class="series-card__title">Deploying and querying an e5 multilingual embedding model in Elasticsearch</h3>
+              <p class="series-card__desc">A step-by-step walkthrough for deploying multilingual embedding models and running production semantic search.</p>
+            </div>
+          </a>
+          <a href="#article" class="series-card">
+            <div class="series-card__image"></div>
+            <div class="series-card__body">
+              <h3 class="series-card__title">Elasticsearch geospatial search</h3>
+              <p class="series-card__desc">This series covers how to use the new geo capabilities in Elasticsearch — ES|QL geo joins, indexing patterns, and visualization in Kibana.</p>
+            </div>
+          </a>
+          <a href="#article" class="series-card">
+            <div class="series-card__image"></div>
+            <div class="series-card__body">
+              <h3 class="series-card__title">Elasticsearch in JavaScript the proper way</h3>
+              <p class="series-card__desc">From the official Node.js client to TypeScript types, error handling, and pagination — building real apps on Elasticsearch with JS.</p>
+            </div>
+          </a>
+        </div>
+      </div><!-- /[data-blog-tab-panel="series"] -->
+
     </section>
   </div><!-- /#page-blog -->
+
+  
+  <!-- =================== INTEGRATION DETAIL (singular) =================== -->
+  <div id="page-integration" class="page-view" hidden>
+
+    <section class="subpage-hero">
+      <div class="subpage-hero__inner">
+        <p class="subpage-hero__eyebrow">INTEGRATIONS</p>
+        <h1 class="subpage-hero__title">Lorem ipsum dolor sit amet</h1>
+      </div>
+    </section>
+
+    <section class="subpage-body">
+      <div class="blog-layout">
+        <aside>
+          <nav class="side-nav" aria-label="Integrations">
+
+            <div class="side-nav__group">
+              <button type="button" class="side-nav__group-label" aria-expanded="true">
+                Integrations
+                <svg class="side-nav__chevron" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+              <ul class="side-nav__list">
+                <li class="side-nav__item"><a href="javascript:void(0)" class="side-nav__row">Overview</a></li>
+                <li class="side-nav__item"><a href="javascript:void(0)" class="side-nav__row">Cohere</a></li>
+                <li class="side-nav__item"><a href="javascript:void(0)" class="side-nav__row">Hugging Face</a></li>
+                <li class="side-nav__item"><a href="javascript:void(0)" class="side-nav__row">OpenAI</a></li>
+                <li class="side-nav__item"><a href="javascript:void(0)" class="side-nav__row">LangChain</a></li>
+                <li class="side-nav__item"><a href="javascript:void(0)" class="side-nav__row">LlamaIndex</a></li>
+                <li class="side-nav__item"><a href="javascript:void(0)" class="side-nav__row">Google Vertex AI</a></li>
+                <li class="side-nav__item"><a href="javascript:void(0)" class="side-nav__row is-active">Amazon Bedrock</a></li>
+                <li class="side-nav__item"><a href="javascript:void(0)" class="side-nav__row">Mistral</a></li>
+                <li class="side-nav__item"><a href="javascript:void(0)" class="side-nav__row">Microsoft Azure AI</a></li>
+                <li class="side-nav__item"><a href="javascript:void(0)" class="side-nav__row">Alibaba Cloud</a></li>
+                <li class="side-nav__item"><a href="javascript:void(0)" class="side-nav__row">Red Hat</a></li>
+                <li class="side-nav__item"><a href="javascript:void(0)" class="side-nav__row">Vectorize.io</a></li>
+                <li class="side-nav__item"><a href="javascript:void(0)" class="side-nav__row">IBM watsonx</a></li>
+                <li class="side-nav__item"><a href="javascript:void(0)" class="side-nav__row">Anthropic</a></li>
+                <li class="side-nav__item"><a href="javascript:void(0)" class="side-nav__row">Jina AI</a></li>
+                <li class="side-nav__item"><a href="javascript:void(0)" class="side-nav__row">Unstructured.io</a></li>
+                <li class="side-nav__item"><a href="javascript:void(0)" class="side-nav__row">Aryn</a></li>
+                <li class="side-nav__item"><a href="javascript:void(0)" class="side-nav__row">NVIDIA</a></li>
+              </ul>
+            </div>
+
+            <div class="integration-detail__actions">
+              <button type="button" class="integration-detail__action">
+                <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="5" y="5" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M11 5V3.5A1.5 1.5 0 009.5 2H3.5A1.5 1.5 0 002 3.5v6A1.5 1.5 0 003.5 11H5" stroke="currentColor" stroke-width="1.5"/></svg>
+                Copy
+              </button>
+              <button type="button" class="integration-detail__action">
+                <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M3 8l5-5m0 0l5 5M8 3v10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Share
+              </button>
+            </div>
+
+          </nav>
+        </aside>
+        <main class="integration-detail__main">
+
+          <p class="integration-detail__lead">Lorem ipsum dolor sit amet consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+
+          <div class="integration-detail__video" role="img" aria-label="Video placeholder">
+            <div class="integration-detail__video-overlay">
+              <div class="integration-detail__video-meta">
+                <div class="integration-detail__video-logo" aria-hidden="true"></div>
+                <div>
+                  <p class="integration-detail__video-title">Using Elasticsearch with Lorem ipsum</p>
+                  <p class="integration-detail__video-channel">Official Elastic Community</p>
+                </div>
+              </div>
+              <button type="button" class="integration-detail__video-play" aria-label="Play video">
+                <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+              </button>
+              <div class="integration-detail__video-yt">Watch on <span>YouTube</span></div>
+            </div>
+          </div>
+
+          <h2 class="integration-detail__section-title">Blogs to get started</h2>
+          <ul class="integration-detail__bloglist">
+            <li><a href="javascript:void(0)">Lorem ipsum dolor sit amet consectetur adipiscing elit</a></li>
+            <li><a href="javascript:void(0)">Sed do eiusmod tempor incididunt ut labore</a></li>
+            <li><a href="javascript:void(0)">Ut enim ad minim veniam quis nostrud exercitation</a></li>
+            <li><a href="javascript:void(0)">Duis aute irure dolor in reprehenderit voluptate</a></li>
+            <li><a href="javascript:void(0)">Excepteur sint occaecat cupidatat non proident sunt in culpa</a></li>
+          </ul>
+
+          <h2 class="integration-detail__section-title">Lorem ipsum in Elastic AI Assistants</h2>
+          <p class="integration-detail__body">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.</p>
+          <p class="integration-detail__body">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.</p>
+
+        </main>
+      </div>
+    </section>
+
+  </div><!-- /#page-integration -->
 
   <!-- =================== JINA AI RESEARCH (stub) =================== -->
   <div id="page-jina-ai-research" class="page-view" hidden>
@@ -3737,6 +4441,29 @@
       </div>
     </section>
   </div><!-- /#page-jina-ai-research -->
+
+  <!-- =================== GLOSSARY =================== -->
+  <div id="page-glossary" class="page-view" hidden>
+
+    <section class="subpage-hero">
+      <div class="subpage-hero__inner">
+        <h1 class="subpage-hero__title">Glossary</h1>
+        <p class="subpage-hero__subtitle">This glossary describes essential terms and concepts to help you understand Elasticsearch and its related technologies.</p>
+      </div>
+    </section>
+
+    <nav class="glossary-alphabet" id="glossary-alphabet" aria-label="Filter by letter"></nav>
+
+    <section class="glossary-body">
+      <aside>
+        <div class="glossary-letter-card" id="glossary-letter-card">F</div>
+        <nav class="glossary-toc" id="glossary-toc" aria-label="Terms"></nav>
+      </aside>
+      <main class="glossary-defs" id="glossary-defs"></main>
+    </section>
+
+  </div><!-- /#page-glossary -->
+
 
   <!-- =================== TUTORIAL ARTICLE PAGE =================== -->
   <div id="page-tutorial" class="page-view" hidden>
@@ -3756,40 +4483,7 @@
       <div class="tutorial-body__inner">
 
         <aside class="tutorial-sidebar">
-          <div>
-            <p class="tutorial-sidebar__label">IN THIS SERIES</p>
-            <nav class="tutorial-toc" aria-label="Tutorial sections">
-        <a href="#tutorial:overview" data-link="overview">Overview</a>
-        <a href="#tutorial:requirements" data-link="requirements">Requirements</a>
-        <a href="#tutorial:project-setup" data-link="project-setup">Project setup</a>
-        <div class="tutorial-toc__group">Full-text search</div>
-        <a href="#tutorial:python-client-setup" data-link="python-client-setup">Python client setup</a>
-        <a href="#tutorial:create-an-index" data-link="create-an-index">Create an index</a>
-        <a href="#tutorial:search-basics" data-link="search-basics">Search basics</a>
-        <a href="#tutorial:pagination" data-link="pagination">Pagination</a>
-        <a href="#tutorial:filters" data-link="filters">Filters</a>
-        <a href="#tutorial:facets" data-link="facets">Facets</a>
-        <div class="tutorial-toc__group">Vector search</div>
-        <a href="#tutorial:embeddings-intro" data-link="embeddings-intro">Embeddings intro</a>
-        <a href="#tutorial:generating-embeddings" data-link="generating-embeddings">Generating embeddings</a>
-        <a href="#tutorial:storing-embeddings" data-link="storing-embeddings">Storing embeddings</a>
-        <a href="#tutorial:knn-search" data-link="knn-search">k-Nearest neighbor search</a>
-        <a href="#tutorial:hybrid-search-vector" data-link="hybrid-search-vector">Hybrid search</a>
-        <div class="tutorial-toc__group">Semantic search</div>
-        <a href="#tutorial:elser-model" data-link="elser-model">ELSER model</a>
-        <a href="#tutorial:semantic-queries" data-link="semantic-queries">Semantic queries</a>
-        <a href="#tutorial:hybrid-search-semantic" data-link="hybrid-search-semantic">Hybrid search</a>
-        <a href="#tutorial:conclusion" data-link="conclusion">Conclusion</a>
-            </nav>
-          </div>
-          <div>
-            <p class="tutorial-sidebar__label">SHARE</p>
-            <div class="tutorial-sidebar__share">
-              <a href="#" aria-label="Share on Twitter"><svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
-              <a href="#" aria-label="Share on Facebook"><svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M22 12a10 10 0 10-11.56 9.88V14.9H7.9V12h2.54V9.8c0-2.5 1.5-3.89 3.77-3.89 1.1 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.9h-2.34v6.98A10 10 0 0022 12z"/></svg></a>
-              <a href="#" aria-label="Share on LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.66H9.36V9h3.41v1.56h.04c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 110-4.13 2.06 2.06 0 010 4.13zM3.56 20.45h3.55V9H3.56v11.45z"/></svg></a>
-            </div>
-          </div>
+          <div class="lorem-sidenav-slot"></div>
         </aside>
 
         <main class="tutorial-content">
@@ -4018,33 +4712,7 @@
       <div class="tutorial-body__inner">
 
         <aside class="tutorial-sidebar">
-          <div>
-            <p class="tutorial-sidebar__label">ALL EXAMPLES</p>
-            <nav class="tutorial-toc" aria-label="Examples">
-        <div class="tutorial-toc__group">Prompts</div>
-        <a href="#example:prompts-prompt-library" data-link="prompts-prompt-library">Prompt library</a>
-        <div class="tutorial-toc__group">Apps</div>
-        <a href="#example:apps-load-embedding-model" data-link="apps-load-embedding-model">Duis aute irure dolor in reprehenderit</a>
-        <a href="#example:apps-chatbot-rag" data-link="apps-chatbot-rag">Excepteur sint occaecat cupidatat</a>
-        <a href="#example:apps-openai-embeddings" data-link="apps-openai-embeddings">Voluptate velit esse cillum dolore</a>
-        <a href="#example:apps-relevance-workbench" data-link="apps-relevance-workbench">Pariatur sunt in culpa</a>
-        <a href="#example:apps-chunking-documents" data-link="apps-chunking-documents">Chunking Large Documents via Ingest Pipelines</a>
-        <div class="tutorial-toc__group">Notebooks</div>
-        <a href="#example:notebooks-load-embedding-model" data-link="notebooks-load-embedding-model">Duis aute irure dolor in reprehenderit</a>
-        <a href="#example:notebooks-chatbot-rag" data-link="notebooks-chatbot-rag">Excepteur sint occaecat cupidatat</a>
-        <a href="#example:notebooks-openai-embeddings" data-link="notebooks-openai-embeddings">Voluptate velit esse cillum dolore</a>
-        <a href="#example:notebooks-relevance-workbench" data-link="notebooks-relevance-workbench">Pariatur sunt in culpa</a>
-        <a href="#example:notebooks-chunking-documents" data-link="notebooks-chunking-documents">Chunking Large Documents via Ingest Pipelines</a>
-            </nav>
-          </div>
-          <div>
-            <p class="tutorial-sidebar__label">SHARE</p>
-            <div class="tutorial-sidebar__share">
-              <a href="#" aria-label="Share on Twitter"><svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
-              <a href="#" aria-label="Share on Facebook"><svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M22 12a10 10 0 10-11.56 9.88V14.9H7.9V12h2.54V9.8c0-2.5 1.5-3.89 3.77-3.89 1.1 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.9h-2.34v6.98A10 10 0 0022 12z"/></svg></a>
-              <a href="#" aria-label="Share on LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.66H9.36V9h3.41v1.56h.04c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 110-4.13 2.06 2.06 0 010 4.13zM3.56 20.45h3.55V9H3.56v11.45z"/></svg></a>
-            </div>
-          </div>
+          <div class="lorem-sidenav-slot"></div>
         </aside>
 
         <main class="tutorial-content">
@@ -4497,58 +5165,7 @@ filled_prompt = PROMPT_TEMPLATE.<span class="tok-function">replace</span>(<span 
     <section class="subpage-body">
       <div class="blog-layout">
         <aside>
-          <nav class="side-nav" aria-label="Categories">
-            <div class="side-nav__group">
-              <button type="button" class="side-nav__group-label" aria-expanded="true">
-                Observability
-                <svg class="side-nav__chevron" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </button>
-              <ul class="side-nav__list">
-                <li class="side-nav__item"><a href="#" class="side-nav__row is-active">All Articles</a></li>
-                <li class="side-nav__item">
-                  <button type="button" class="side-nav__row" aria-expanded="false">
-                    Lorem APM
-                    <svg class="side-nav__chevron" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  </button>
-                  <ul class="side-nav__sublist">
-                    <li><a href="#" class="side-nav__row">Dolor sit</a></li>
-                    <li><a href="#" class="side-nav__row">Amet consectetur</a></li>
-                  </ul>
-                </li>
-                <li class="side-nav__item"><a href="#" class="side-nav__row">Ipsum logging</a></li>
-                <li class="side-nav__item"><a href="#" class="side-nav__row">Tempor metrics</a></li>
-                <li class="side-nav__item">
-                  <button type="button" class="side-nav__row" aria-expanded="false">
-                    Sed tracing
-                    <svg class="side-nav__chevron" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  </button>
-                  <ul class="side-nav__sublist">
-                    <li><a href="#" class="side-nav__row">Incididunt</a></li>
-                    <li><a href="#" class="side-nav__row">Magna aliqua</a></li>
-                  </ul>
-                </li>
-                <li class="side-nav__item"><a href="#" class="side-nav__row">Ut labore alerts</a></li>
-              </ul>
-            </div>
-            <div class="side-nav__group">
-              <button type="button" class="side-nav__group-label" aria-expanded="true">
-                Integrations
-                <svg class="side-nav__chevron" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </button>
-              <ul class="side-nav__list">
-                <li class="side-nav__item"><a href="#" class="side-nav__row">OpenTelemetry</a></li>
-                <li class="side-nav__item"><a href="#" class="side-nav__row">Kubernetes</a></li>
-                <li class="side-nav__item"><a href="#" class="side-nav__row">Prometheus</a></li>
-              </ul>
-            </div>
-            <a href="#" class="side-nav__subscribe">
-              Subscribe
-              <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path d="M3 3a10 10 0 0110 10M3 8a5 5 0 015 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-                <circle cx="3.5" cy="12.5" r="1" fill="currentColor"/>
-              </svg>
-            </a>
-          </nav>
+          <div class="lorem-sidenav-slot"></div>
         </aside>
         <main class="blog-feed">
 
@@ -4799,7 +5416,7 @@ filled_prompt = PROMPT_TEMPLATE.<span class="tok-function">replace</span>(<span 
 
         <aside class="obs-filter-sidebar">
           <p class="obs-filter-sidebar__label">Connect with author</p>
-          <a href="#" class="btn-yellow-outline"><span>Subscribe to newsletter</span></a>
+          <a href="#" class="btn--secondary"><span>Subscribe to newsletter</span></a>
         </aside>
 
       </div>
@@ -5058,58 +5675,7 @@ filled_prompt = PROMPT_TEMPLATE.<span class="tok-function">replace</span>(<span 
       <section class="subpage-body">
         <div class="blog-layout">
           <aside>
-            <nav class="side-nav" aria-label="Categories">
-            <div class="side-nav__group">
-              <button type="button" class="side-nav__group-label" aria-expanded="true">
-                Security Research
-                <svg class="side-nav__chevron" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </button>
-              <ul class="side-nav__list">
-                <li class="side-nav__item"><a href="#" class="side-nav__row is-active">All Reports</a></li>
-                <li class="side-nav__item">
-                  <button type="button" class="side-nav__row" aria-expanded="false">
-                    Threat Intel
-                    <svg class="side-nav__chevron" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  </button>
-                  <ul class="side-nav__sublist">
-                    <li><a href="#" class="side-nav__row">Lorem actors</a></li>
-                    <li><a href="#" class="side-nav__row">Ipsum campaigns</a></li>
-                  </ul>
-                </li>
-                <li class="side-nav__item"><a href="#" class="side-nav__row">Malware analysis</a></li>
-                <li class="side-nav__item"><a href="#" class="side-nav__row">Detection engineering</a></li>
-                <li class="side-nav__item">
-                  <button type="button" class="side-nav__row" aria-expanded="false">
-                    Internals
-                    <svg class="side-nav__chevron" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  </button>
-                  <ul class="side-nav__sublist">
-                    <li><a href="#" class="side-nav__row">Reverse engineering</a></li>
-                    <li><a href="#" class="side-nav__row">Forensics</a></li>
-                  </ul>
-                </li>
-                <li class="side-nav__item"><a href="#" class="side-nav__row">Vulnerabilities</a></li>
-              </ul>
-            </div>
-            <div class="side-nav__group">
-              <button type="button" class="side-nav__group-label" aria-expanded="true">
-                Tools &amp; Tradecraft
-                <svg class="side-nav__chevron" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </button>
-              <ul class="side-nav__list">
-                <li class="side-nav__item"><a href="#" class="side-nav__row">YARA rules</a></li>
-                <li class="side-nav__item"><a href="#" class="side-nav__row">Open-source tools</a></li>
-                <li class="side-nav__item"><a href="#" class="side-nav__row">Hunting queries</a></li>
-              </ul>
-            </div>
-            <a href="#" class="side-nav__subscribe">
-              Subscribe
-              <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path d="M3 3a10 10 0 0110 10M3 8a5 5 0 015 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-                <circle cx="3.5" cy="12.5" r="1" fill="currentColor"/>
-              </svg>
-            </a>
-          </nav>
+            <div class="lorem-sidenav-slot"></div>
           </aside>
           <main class="blog-feed">
 
@@ -5372,203 +5938,113 @@ filled_prompt = PROMPT_TEMPLATE.<span class="tok-function">replace</span>(<span 
       <div class="subpage-hero__inner">
         <h1 class="subpage-hero__title">Tag&rsquo;s page</h1>
         <p class="subpage-hero__subtitle">After you click on a tag</p>
-        <a href="#" class="btn--secondary subpage-hero__cta">
-          Subscribe
-          <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path d="M3 3a10 10 0 0110 10M3 8a5 5 0 015 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-            <circle cx="3.5" cy="12.5" r="1" fill="currentColor"/>
-          </svg>
-        </a>
       </div>
     </section>
 
     <section class="subpage-body">
-      <div class="container">
-        <div class="author-articles">
-          <h2 class="author-articles__title">Author&rsquo;s article</h2>
-          <div class="author-articles__grid">
+      <div class="blog-layout">
+        <aside>
+          <div class="lorem-sidenav-slot"></div>
+        </aside>
+        <main class="blog-feed">
+
+          <article class="blog-feed__featured">
+            <div class="blog-feed__featured-content">
+              <div class="blog-feed__featured-meta">
+                <a href="#sec-filter" class="chip">Lorem</a>
+                <span class="related-card__date">May 01, 2026</span>
+              </div>
+              <h3 class="blog-feed__featured-title"><a href="#sec-article">Lorem ipsum dolor sit amet consectetur adipiscing elit</a></h3>
+              <p class="blog-feed__featured-desc">Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua enim ad minim veniam.</p>
+              <div class="blog-feed__featured-byline">
+                <div class="blog-feed__featured-byline-avatars" aria-hidden="true">
+                  <span>LO</span><span>RE</span>
+                </div>
+                <span class="blog-feed__featured-byline-text">By <a href="#sec-author">Lorem Owens and Rem Estrada</a></span>
+              </div>
+            </div>
+            <div class="blog-feed__featured-image" role="img" aria-label="Article image placeholder"></div>
+          </article>
+
+          <div class="blog-grid">
+
             <article class="related-card">
               <div class="related-card__image" role="img" aria-label="Article image placeholder"></div>
               <div class="related-card__body">
                 <div class="related-card__meta">
-                  <a href="#sec-filter" class="chip">Integrations</a><a href="#sec-filter" class="chip">How To</a>
+                  <a href="#sec-filter" class="chip">Threat Intel</a>
                   <span class="related-card__date">May 01, 2026</span>
                 </div>
-                <h3 class="related-card__title"><a href="#sec-article">Lorem ipsum dolor sit amet consectetur</a></h3>
-                <p class="related-card__desc">Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <h3 class="related-card__title"><a href="#sec-article">Ut enim ad minim veniam quis nostrud</a></h3>
+                <p class="related-card__desc">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.</p>
                 <div class="related-card__author">
-                  <span class="related-card__avatar">QP</span>
-                  <span class="related-card__author-name">By <a href="#sec-author">Quentin Pradet</a></span>
+                  <span class="related-card__avatar">PV</span>
+                  <span class="related-card__author-name">By <a href="#sec-author">Petra Volkov</a></span>
                 </div>
               </div>
             </article>
+
             <article class="related-card">
               <div class="related-card__image" role="img" aria-label="Article image placeholder"></div>
               <div class="related-card__body">
                 <div class="related-card__meta">
-                  <a href="#sec-filter" class="chip">Vector Search</a><a href="#sec-filter" class="chip">How To</a>
+                  <a href="#sec-filter" class="chip">Detection</a>
                   <span class="related-card__date">May 01, 2026</span>
                 </div>
-                <h3 class="related-card__title"><a href="#sec-article">Ut enim ad minim veniam quis nostrud exercitation</a></h3>
-                <p class="related-card__desc">Duis aute irure dolor in reprehenderit voluptate velit esse cillum.</p>
-                <div class="related-card__author">
-                  <span class="related-card__avatar">KD</span>
-                  <span class="related-card__author-name">By <a href="#sec-author">Kathleen DeRusso</a></span>
-                </div>
-              </div>
-            </article>
-            <article class="related-card">
-              <div class="related-card__image" role="img" aria-label="Article image placeholder"></div>
-              <div class="related-card__body">
-                <div class="related-card__meta">
-                  <a href="#sec-filter" class="chip">Vector Search</a><a href="#sec-filter" class="chip">How To</a>
-                  <span class="related-card__date">May 01, 2026</span>
-                </div>
-                <h3 class="related-card__title"><a href="#sec-article">Excepteur sint occaecat cupidatat non proident sunt</a></h3>
+                <h3 class="related-card__title"><a href="#sec-article">Duis aute irure dolor in reprehenderit</a></h3>
                 <p class="related-card__desc">Officia deserunt mollit anim id est laborum sed ut perspiciatis.</p>
                 <div class="related-card__author">
-                  <span class="related-card__avatar">KD</span>
-                  <span class="related-card__author-name">By <a href="#sec-author">Kathleen DeRusso</a></span>
+                  <span class="related-card__avatar">AC</span>
+                  <span class="related-card__author-name">By <a href="#sec-author">Ana Chen</a></span>
                 </div>
               </div>
             </article>
+
             <article class="related-card">
               <div class="related-card__image" role="img" aria-label="Article image placeholder"></div>
               <div class="related-card__body">
                 <div class="related-card__meta">
-                  <a href="#sec-filter" class="chip">Integrations</a><a href="#sec-filter" class="chip">How To</a>
+                  <a href="#sec-filter" class="chip">Lucene</a>
                   <span class="related-card__date">May 01, 2026</span>
                 </div>
-                <h3 class="related-card__title"><a href="#sec-article">Lorem ipsum dolor sit amet consectetur</a></h3>
-                <p class="related-card__desc">Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <h3 class="related-card__title"><a href="#sec-article">Excepteur sint occaecat cupidatat non proident</a></h3>
+                <p class="related-card__desc">Sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                 <div class="related-card__author">
-                  <span class="related-card__avatar">QP</span>
-                  <span class="related-card__author-name">By <a href="#sec-author">Quentin Pradet</a></span>
+                  <span class="related-card__avatar">RM</span>
+                  <span class="related-card__author-name">By <a href="#sec-author">Reza Maldonado</a></span>
                 </div>
               </div>
             </article>
+
             <article class="related-card">
               <div class="related-card__image" role="img" aria-label="Article image placeholder"></div>
               <div class="related-card__body">
                 <div class="related-card__meta">
-                  <a href="#sec-filter" class="chip">Vector Search</a><a href="#sec-filter" class="chip">How To</a>
+                  <a href="#sec-filter" class="chip">Endpoint</a>
                   <span class="related-card__date">May 01, 2026</span>
                 </div>
-                <h3 class="related-card__title"><a href="#sec-article">Ut enim ad minim veniam quis nostrud exercitation</a></h3>
-                <p class="related-card__desc">Duis aute irure dolor in reprehenderit voluptate velit esse cillum.</p>
+                <h3 class="related-card__title"><a href="#sec-article">Sed ut perspiciatis unde omnis iste natus error</a></h3>
+                <p class="related-card__desc">Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit.</p>
                 <div class="related-card__author">
-                  <span class="related-card__avatar">KD</span>
-                  <span class="related-card__author-name">By <a href="#sec-author">Kathleen DeRusso</a></span>
+                  <span class="related-card__avatar">JK</span>
+                  <span class="related-card__author-name">By <a href="#sec-author">Jamie Kowalski</a></span>
                 </div>
               </div>
             </article>
-            <article class="related-card">
-              <div class="related-card__image" role="img" aria-label="Article image placeholder"></div>
-              <div class="related-card__body">
-                <div class="related-card__meta">
-                  <a href="#sec-filter" class="chip">Vector Search</a><a href="#sec-filter" class="chip">How To</a>
-                  <span class="related-card__date">May 01, 2026</span>
-                </div>
-                <h3 class="related-card__title"><a href="#sec-article">Excepteur sint occaecat cupidatat non proident sunt</a></h3>
-                <p class="related-card__desc">Officia deserunt mollit anim id est laborum sed ut perspiciatis.</p>
-                <div class="related-card__author">
-                  <span class="related-card__avatar">KD</span>
-                  <span class="related-card__author-name">By <a href="#sec-author">Kathleen DeRusso</a></span>
-                </div>
-              </div>
-            </article>
-            <article class="related-card">
-              <div class="related-card__image" role="img" aria-label="Article image placeholder"></div>
-              <div class="related-card__body">
-                <div class="related-card__meta">
-                  <a href="#sec-filter" class="chip">Integrations</a><a href="#sec-filter" class="chip">How To</a>
-                  <span class="related-card__date">May 01, 2026</span>
-                </div>
-                <h3 class="related-card__title"><a href="#sec-article">Lorem ipsum dolor sit amet consectetur</a></h3>
-                <p class="related-card__desc">Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                <div class="related-card__author">
-                  <span class="related-card__avatar">QP</span>
-                  <span class="related-card__author-name">By <a href="#sec-author">Quentin Pradet</a></span>
-                </div>
-              </div>
-            </article>
-            <article class="related-card">
-              <div class="related-card__image" role="img" aria-label="Article image placeholder"></div>
-              <div class="related-card__body">
-                <div class="related-card__meta">
-                  <a href="#sec-filter" class="chip">Vector Search</a><a href="#sec-filter" class="chip">How To</a>
-                  <span class="related-card__date">May 01, 2026</span>
-                </div>
-                <h3 class="related-card__title"><a href="#sec-article">Ut enim ad minim veniam quis nostrud exercitation</a></h3>
-                <p class="related-card__desc">Duis aute irure dolor in reprehenderit voluptate velit esse cillum.</p>
-                <div class="related-card__author">
-                  <span class="related-card__avatar">KD</span>
-                  <span class="related-card__author-name">By <a href="#sec-author">Kathleen DeRusso</a></span>
-                </div>
-              </div>
-            </article>
-            <article class="related-card">
-              <div class="related-card__image" role="img" aria-label="Article image placeholder"></div>
-              <div class="related-card__body">
-                <div class="related-card__meta">
-                  <a href="#sec-filter" class="chip">Vector Search</a><a href="#sec-filter" class="chip">How To</a>
-                  <span class="related-card__date">May 01, 2026</span>
-                </div>
-                <h3 class="related-card__title"><a href="#sec-article">Excepteur sint occaecat cupidatat non proident sunt</a></h3>
-                <p class="related-card__desc">Officia deserunt mollit anim id est laborum sed ut perspiciatis.</p>
-                <div class="related-card__author">
-                  <span class="related-card__avatar">KD</span>
-                  <span class="related-card__author-name">By <a href="#sec-author">Kathleen DeRusso</a></span>
-                </div>
-              </div>
-            </article>
-            <article class="related-card">
-              <div class="related-card__image" role="img" aria-label="Article image placeholder"></div>
-              <div class="related-card__body">
-                <div class="related-card__meta">
-                  <a href="#sec-filter" class="chip">Integrations</a><a href="#sec-filter" class="chip">How To</a>
-                  <span class="related-card__date">May 01, 2026</span>
-                </div>
-                <h3 class="related-card__title"><a href="#sec-article">Lorem ipsum dolor sit amet consectetur</a></h3>
-                <p class="related-card__desc">Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                <div class="related-card__author">
-                  <span class="related-card__avatar">QP</span>
-                  <span class="related-card__author-name">By <a href="#sec-author">Quentin Pradet</a></span>
-                </div>
-              </div>
-            </article>
-            <article class="related-card">
-              <div class="related-card__image" role="img" aria-label="Article image placeholder"></div>
-              <div class="related-card__body">
-                <div class="related-card__meta">
-                  <a href="#sec-filter" class="chip">Vector Search</a><a href="#sec-filter" class="chip">How To</a>
-                  <span class="related-card__date">May 01, 2026</span>
-                </div>
-                <h3 class="related-card__title"><a href="#sec-article">Ut enim ad minim veniam quis nostrud exercitation</a></h3>
-                <p class="related-card__desc">Duis aute irure dolor in reprehenderit voluptate velit esse cillum.</p>
-                <div class="related-card__author">
-                  <span class="related-card__avatar">KD</span>
-                  <span class="related-card__author-name">By <a href="#sec-author">Kathleen DeRusso</a></span>
-                </div>
-              </div>
-            </article>
-            <article class="related-card">
-              <div class="related-card__image" role="img" aria-label="Article image placeholder"></div>
-              <div class="related-card__body">
-                <div class="related-card__meta">
-                  <a href="#sec-filter" class="chip">Vector Search</a><a href="#sec-filter" class="chip">How To</a>
-                  <span class="related-card__date">May 01, 2026</span>
-                </div>
-                <h3 class="related-card__title"><a href="#sec-article">Excepteur sint occaecat cupidatat non proident sunt</a></h3>
-                <p class="related-card__desc">Officia deserunt mollit anim id est laborum sed ut perspiciatis.</p>
-                <div class="related-card__author">
-                  <span class="related-card__avatar">KD</span>
-                  <span class="related-card__author-name">By <a href="#sec-author">Kathleen DeRusso</a></span>
-                </div>
-              </div>
-            </article>
+
           </div>
-        </div>
+
+          <nav class="pagination" aria-label="Pagination">
+            <button class="pagination__prev" disabled aria-label="Previous">&larr;</button>
+            <span class="pagination__pages">
+              <button class="pagination__page is-active">1</button>
+              <button class="pagination__page">2</button>
+              <button class="pagination__page">3</button>
+            </span>
+            <button class="pagination__next" aria-label="Next">&rarr;</button>
+          </nav>
+
+        </main>
       </div>
     </section>
 
@@ -5718,7 +6194,7 @@ filled_prompt = PROMPT_TEMPLATE.<span class="tok-function">replace</span>(<span 
 
         <aside class="obs-filter-sidebar">
           <p class="obs-filter-sidebar__label">Connect with author</p>
-          <a href="#" class="btn-yellow-outline"><span>Subscribe to newsletter</span></a>
+          <a href="#" class="btn--secondary"><span>Subscribe to newsletter</span></a>
         </aside>
 
       </div>
@@ -5971,57 +6447,7 @@ filled_prompt = PROMPT_TEMPLATE.<span class="tok-function">replace</span>(<span 
             <div data-company-section="solutions">
         <div class="blog-layout">
           <aside>
-            <nav class="side-nav is-display-only" aria-label="Categories">
-            <div class="side-nav__group">
-              <button type="button" class="side-nav__group-label" aria-expanded="true">
-                Categories
-                <svg class="side-nav__chevron" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </button>
-              <ul class="side-nav__list">
-                <li class="side-nav__item"><a href="#" class="side-nav__row is-active">All News</a></li>
-                <li class="side-nav__item">
-                  <button type="button" class="side-nav__row" aria-expanded="false">
-                    Lorem ipsum
-                    <svg class="side-nav__chevron" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  </button>
-                  <ul class="side-nav__sublist">
-                    <li><a href="#" class="side-nav__row">Dolor sit</a></li>
-                    <li><a href="#" class="side-nav__row">Amet</a></li>
-                  </ul>
-                </li>
-                <li class="side-nav__item"><a href="#" class="side-nav__row">Consectetur</a></li>
-                <li class="side-nav__item"><a href="#" class="side-nav__row">Adipiscing</a></li>
-                <li class="side-nav__item"><a href="#" class="side-nav__row">Eiusmod</a></li>
-              </ul>
-            </div>
-            <div class="side-nav__group">
-              <button type="button" class="side-nav__group-label" aria-expanded="true">
-                Topics
-                <svg class="side-nav__chevron" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </button>
-              <ul class="side-nav__list">
-                <li class="side-nav__item"><a href="#" class="side-nav__row">Tempor</a></li>
-                <li class="side-nav__item">
-                  <button type="button" class="side-nav__row" aria-expanded="false">
-                    Incididunt
-                    <svg class="side-nav__chevron" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  </button>
-                  <ul class="side-nav__sublist">
-                    <li><a href="#" class="side-nav__row">Ut labore</a></li>
-                    <li><a href="#" class="side-nav__row">Magna</a></li>
-                  </ul>
-                </li>
-                <li class="side-nav__item"><a href="#" class="side-nav__row">Aliqua</a></li>
-              </ul>
-            </div>
-            <a href="#" class="side-nav__subscribe">
-              Subscribe
-              <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path d="M3 3a10 10 0 0110 10M3 8a5 5 0 015 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-                <circle cx="3.5" cy="12.5" r="1" fill="currentColor"/>
-              </svg>
-            </a>
-          </nav>
+            <div class="lorem-sidenav-slot"></div>
           </aside>
           <main class="blog-feed">
             <article class="blog-feed__featured">
@@ -6118,57 +6544,7 @@ filled_prompt = PROMPT_TEMPLATE.<span class="tok-function">replace</span>(<span 
       <div data-company-section="stack-cloud" hidden>
         <div class="blog-layout">
           <aside>
-            <nav class="side-nav is-display-only" aria-label="Categories">
-            <div class="side-nav__group">
-              <button type="button" class="side-nav__group-label" aria-expanded="true">
-                Categories
-                <svg class="side-nav__chevron" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </button>
-              <ul class="side-nav__list">
-                <li class="side-nav__item"><a href="#" class="side-nav__row is-active">All News</a></li>
-                <li class="side-nav__item">
-                  <button type="button" class="side-nav__row" aria-expanded="false">
-                    Lorem ipsum
-                    <svg class="side-nav__chevron" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  </button>
-                  <ul class="side-nav__sublist">
-                    <li><a href="#" class="side-nav__row">Dolor sit</a></li>
-                    <li><a href="#" class="side-nav__row">Amet</a></li>
-                  </ul>
-                </li>
-                <li class="side-nav__item"><a href="#" class="side-nav__row">Consectetur</a></li>
-                <li class="side-nav__item"><a href="#" class="side-nav__row">Adipiscing</a></li>
-                <li class="side-nav__item"><a href="#" class="side-nav__row">Eiusmod</a></li>
-              </ul>
-            </div>
-            <div class="side-nav__group">
-              <button type="button" class="side-nav__group-label" aria-expanded="true">
-                Topics
-                <svg class="side-nav__chevron" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </button>
-              <ul class="side-nav__list">
-                <li class="side-nav__item"><a href="#" class="side-nav__row">Tempor</a></li>
-                <li class="side-nav__item">
-                  <button type="button" class="side-nav__row" aria-expanded="false">
-                    Incididunt
-                    <svg class="side-nav__chevron" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  </button>
-                  <ul class="side-nav__sublist">
-                    <li><a href="#" class="side-nav__row">Ut labore</a></li>
-                    <li><a href="#" class="side-nav__row">Magna</a></li>
-                  </ul>
-                </li>
-                <li class="side-nav__item"><a href="#" class="side-nav__row">Aliqua</a></li>
-              </ul>
-            </div>
-            <a href="#" class="side-nav__subscribe">
-              Subscribe
-              <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path d="M3 3a10 10 0 0110 10M3 8a5 5 0 015 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-                <circle cx="3.5" cy="12.5" r="1" fill="currentColor"/>
-              </svg>
-            </a>
-          </nav>
+            <div class="lorem-sidenav-slot"></div>
           </aside>
           <main class="blog-feed">
             <article class="blog-feed__featured">
@@ -6265,57 +6641,7 @@ filled_prompt = PROMPT_TEMPLATE.<span class="tok-function">replace</span>(<span 
       <div data-company-section="news" hidden>
         <div class="blog-layout">
           <aside>
-            <nav class="side-nav is-display-only" aria-label="Categories">
-            <div class="side-nav__group">
-              <button type="button" class="side-nav__group-label" aria-expanded="true">
-                Categories
-                <svg class="side-nav__chevron" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </button>
-              <ul class="side-nav__list">
-                <li class="side-nav__item"><a href="#" class="side-nav__row is-active">All News</a></li>
-                <li class="side-nav__item">
-                  <button type="button" class="side-nav__row" aria-expanded="false">
-                    Lorem ipsum
-                    <svg class="side-nav__chevron" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  </button>
-                  <ul class="side-nav__sublist">
-                    <li><a href="#" class="side-nav__row">Dolor sit</a></li>
-                    <li><a href="#" class="side-nav__row">Amet</a></li>
-                  </ul>
-                </li>
-                <li class="side-nav__item"><a href="#" class="side-nav__row">Consectetur</a></li>
-                <li class="side-nav__item"><a href="#" class="side-nav__row">Adipiscing</a></li>
-                <li class="side-nav__item"><a href="#" class="side-nav__row">Eiusmod</a></li>
-              </ul>
-            </div>
-            <div class="side-nav__group">
-              <button type="button" class="side-nav__group-label" aria-expanded="true">
-                Topics
-                <svg class="side-nav__chevron" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </button>
-              <ul class="side-nav__list">
-                <li class="side-nav__item"><a href="#" class="side-nav__row">Tempor</a></li>
-                <li class="side-nav__item">
-                  <button type="button" class="side-nav__row" aria-expanded="false">
-                    Incididunt
-                    <svg class="side-nav__chevron" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  </button>
-                  <ul class="side-nav__sublist">
-                    <li><a href="#" class="side-nav__row">Ut labore</a></li>
-                    <li><a href="#" class="side-nav__row">Magna</a></li>
-                  </ul>
-                </li>
-                <li class="side-nav__item"><a href="#" class="side-nav__row">Aliqua</a></li>
-              </ul>
-            </div>
-            <a href="#" class="side-nav__subscribe">
-              Subscribe
-              <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path d="M3 3a10 10 0 0110 10M3 8a5 5 0 015 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-                <circle cx="3.5" cy="12.5" r="1" fill="currentColor"/>
-              </svg>
-            </a>
-          </nav>
+            <div class="lorem-sidenav-slot"></div>
           </aside>
           <main class="blog-feed">
             <article class="blog-feed__featured">
@@ -6412,57 +6738,7 @@ filled_prompt = PROMPT_TEMPLATE.<span class="tok-function">replace</span>(<span 
       <div data-company-section="customers" hidden>
         <div class="blog-layout">
           <aside>
-            <nav class="side-nav is-display-only" aria-label="Categories">
-            <div class="side-nav__group">
-              <button type="button" class="side-nav__group-label" aria-expanded="true">
-                Categories
-                <svg class="side-nav__chevron" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </button>
-              <ul class="side-nav__list">
-                <li class="side-nav__item"><a href="#" class="side-nav__row is-active">All News</a></li>
-                <li class="side-nav__item">
-                  <button type="button" class="side-nav__row" aria-expanded="false">
-                    Lorem ipsum
-                    <svg class="side-nav__chevron" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  </button>
-                  <ul class="side-nav__sublist">
-                    <li><a href="#" class="side-nav__row">Dolor sit</a></li>
-                    <li><a href="#" class="side-nav__row">Amet</a></li>
-                  </ul>
-                </li>
-                <li class="side-nav__item"><a href="#" class="side-nav__row">Consectetur</a></li>
-                <li class="side-nav__item"><a href="#" class="side-nav__row">Adipiscing</a></li>
-                <li class="side-nav__item"><a href="#" class="side-nav__row">Eiusmod</a></li>
-              </ul>
-            </div>
-            <div class="side-nav__group">
-              <button type="button" class="side-nav__group-label" aria-expanded="true">
-                Topics
-                <svg class="side-nav__chevron" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </button>
-              <ul class="side-nav__list">
-                <li class="side-nav__item"><a href="#" class="side-nav__row">Tempor</a></li>
-                <li class="side-nav__item">
-                  <button type="button" class="side-nav__row" aria-expanded="false">
-                    Incididunt
-                    <svg class="side-nav__chevron" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  </button>
-                  <ul class="side-nav__sublist">
-                    <li><a href="#" class="side-nav__row">Ut labore</a></li>
-                    <li><a href="#" class="side-nav__row">Magna</a></li>
-                  </ul>
-                </li>
-                <li class="side-nav__item"><a href="#" class="side-nav__row">Aliqua</a></li>
-              </ul>
-            </div>
-            <a href="#" class="side-nav__subscribe">
-              Subscribe
-              <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path d="M3 3a10 10 0 0110 10M3 8a5 5 0 015 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-                <circle cx="3.5" cy="12.5" r="1" fill="currentColor"/>
-              </svg>
-            </a>
-          </nav>
+            <div class="lorem-sidenav-slot"></div>
           </aside>
           <main class="blog-feed">
             <article class="blog-feed__featured">
@@ -6559,57 +6835,7 @@ filled_prompt = PROMPT_TEMPLATE.<span class="tok-function">replace</span>(<span 
       <div data-company-section="generative-ai" hidden>
         <div class="blog-layout">
           <aside>
-            <nav class="side-nav is-display-only" aria-label="Categories">
-            <div class="side-nav__group">
-              <button type="button" class="side-nav__group-label" aria-expanded="true">
-                Categories
-                <svg class="side-nav__chevron" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </button>
-              <ul class="side-nav__list">
-                <li class="side-nav__item"><a href="#" class="side-nav__row is-active">All News</a></li>
-                <li class="side-nav__item">
-                  <button type="button" class="side-nav__row" aria-expanded="false">
-                    Lorem ipsum
-                    <svg class="side-nav__chevron" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  </button>
-                  <ul class="side-nav__sublist">
-                    <li><a href="#" class="side-nav__row">Dolor sit</a></li>
-                    <li><a href="#" class="side-nav__row">Amet</a></li>
-                  </ul>
-                </li>
-                <li class="side-nav__item"><a href="#" class="side-nav__row">Consectetur</a></li>
-                <li class="side-nav__item"><a href="#" class="side-nav__row">Adipiscing</a></li>
-                <li class="side-nav__item"><a href="#" class="side-nav__row">Eiusmod</a></li>
-              </ul>
-            </div>
-            <div class="side-nav__group">
-              <button type="button" class="side-nav__group-label" aria-expanded="true">
-                Topics
-                <svg class="side-nav__chevron" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </button>
-              <ul class="side-nav__list">
-                <li class="side-nav__item"><a href="#" class="side-nav__row">Tempor</a></li>
-                <li class="side-nav__item">
-                  <button type="button" class="side-nav__row" aria-expanded="false">
-                    Incididunt
-                    <svg class="side-nav__chevron" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  </button>
-                  <ul class="side-nav__sublist">
-                    <li><a href="#" class="side-nav__row">Ut labore</a></li>
-                    <li><a href="#" class="side-nav__row">Magna</a></li>
-                  </ul>
-                </li>
-                <li class="side-nav__item"><a href="#" class="side-nav__row">Aliqua</a></li>
-              </ul>
-            </div>
-            <a href="#" class="side-nav__subscribe">
-              Subscribe
-              <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path d="M3 3a10 10 0 0110 10M3 8a5 5 0 015 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-                <circle cx="3.5" cy="12.5" r="1" fill="currentColor"/>
-              </svg>
-            </a>
-          </nav>
+            <div class="lorem-sidenav-slot"></div>
           </aside>
           <main class="blog-feed">
             <article class="blog-feed__featured">
@@ -6706,57 +6932,7 @@ filled_prompt = PROMPT_TEMPLATE.<span class="tok-function">replace</span>(<span 
       <div data-company-section="culture" hidden>
         <div class="blog-layout">
           <aside>
-            <nav class="side-nav is-display-only" aria-label="Categories">
-            <div class="side-nav__group">
-              <button type="button" class="side-nav__group-label" aria-expanded="true">
-                Categories
-                <svg class="side-nav__chevron" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </button>
-              <ul class="side-nav__list">
-                <li class="side-nav__item"><a href="#" class="side-nav__row is-active">All News</a></li>
-                <li class="side-nav__item">
-                  <button type="button" class="side-nav__row" aria-expanded="false">
-                    Lorem ipsum
-                    <svg class="side-nav__chevron" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  </button>
-                  <ul class="side-nav__sublist">
-                    <li><a href="#" class="side-nav__row">Dolor sit</a></li>
-                    <li><a href="#" class="side-nav__row">Amet</a></li>
-                  </ul>
-                </li>
-                <li class="side-nav__item"><a href="#" class="side-nav__row">Consectetur</a></li>
-                <li class="side-nav__item"><a href="#" class="side-nav__row">Adipiscing</a></li>
-                <li class="side-nav__item"><a href="#" class="side-nav__row">Eiusmod</a></li>
-              </ul>
-            </div>
-            <div class="side-nav__group">
-              <button type="button" class="side-nav__group-label" aria-expanded="true">
-                Topics
-                <svg class="side-nav__chevron" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </button>
-              <ul class="side-nav__list">
-                <li class="side-nav__item"><a href="#" class="side-nav__row">Tempor</a></li>
-                <li class="side-nav__item">
-                  <button type="button" class="side-nav__row" aria-expanded="false">
-                    Incididunt
-                    <svg class="side-nav__chevron" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  </button>
-                  <ul class="side-nav__sublist">
-                    <li><a href="#" class="side-nav__row">Ut labore</a></li>
-                    <li><a href="#" class="side-nav__row">Magna</a></li>
-                  </ul>
-                </li>
-                <li class="side-nav__item"><a href="#" class="side-nav__row">Aliqua</a></li>
-              </ul>
-            </div>
-            <a href="#" class="side-nav__subscribe">
-              Subscribe
-              <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path d="M3 3a10 10 0 0110 10M3 8a5 5 0 015 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-                <circle cx="3.5" cy="12.5" r="1" fill="currentColor"/>
-              </svg>
-            </a>
-          </nav>
+            <div class="lorem-sidenav-slot"></div>
           </aside>
           <main class="blog-feed">
             <article class="blog-feed__featured">
@@ -6994,13 +7170,13 @@ filled_prompt = PROMPT_TEMPLATE.<span class="tok-function">replace</span>(<span 
         <p class="newsletter__desc">Sufficiently advanced search isn't achieved with the efforts of one. Elasticsearch is powered by data scientists, ML ops, engineers, and many more who are just as passionate about search as your are. Let's connect and work together to build the magical search experience that will get you the results you want.</p>
       </div>
       <div class="newsletter__actions">
-        <a href="#" class="btn-yellow">
+        <a href="#" class="btn--primary">
           <span>Try it yourself</span>
           <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M11 3v10M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </a>
-        <a href="#" class="btn-yellow-outline">
+        <a href="#" class="btn--secondary">
           <span>Subscribe to newsletter</span>
         </a>
       </div>
@@ -7019,10 +7195,10 @@ filled_prompt = PROMPT_TEMPLATE.<span class="tok-function">replace</span>(<span 
       <div class="trial-banner__inner">
         <h2 class="trial-banner__title">Ready to make data work for you?</h2>
         <div class="trial-banner__actions">
-          <a href="#" class="trial-banner__btn trial-banner__btn--solid">Start free trial</a>
-          <a href="#" class="trial-banner__btn trial-banner__btn--ghost">
+          <a href="#" class="btn--primary">Start free trial</a>
+          <a href="#" class="btn--tertiary" style="color:#fff;">
             <span>Contact sales</span>
-            <svg viewBox="0 0 25 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <svg viewBox="0 0 25 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="width:20px;height:12px;margin-left:4px;">
               <path d="M1 6h22m-4-4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </a>
@@ -7073,6 +7249,7 @@ filled_prompt = PROMPT_TEMPLATE.<span class="tok-function">replace</span>(<span 
               <a href="#">Leadership</a>
               <a href="#">DE&amp;I</a>
               <a href="#">Blog</a>
+              <a href="#glossary">Glossary</a>
             </div>
           </div>
           <div class="footer__col-group">
@@ -7199,10 +7376,12 @@ filled_prompt = PROMPT_TEMPLATE.<span class="tok-function">replace</span>(<span 
       examples:     { view: document.getElementById('page-examples'),     subnav: 'examples',     title: 'Examples — Search Labs' },
       integrations: { view: document.getElementById('page-integrations'), subnav: 'integrations', title: 'Integrations — Search Labs' },
       'jina-ai-research': { view: document.getElementById('page-jina-ai-research'), subnav: 'jina-ai-research', title: 'Jina AI Research', lab: 'elasticsearch' },
+      glossary:    { view: document.getElementById('page-glossary'),    subnav: '',    title: 'Glossary — Search Labs',    lab: 'elasticsearch' },
+      integration: { view: document.getElementById('page-integration'), subnav: 'integrations', title: 'Integration — Search Labs', lab: 'elasticsearch' },
       blog:         { view: document.getElementById('page-blog'),         subnav: 'blog',         title: 'Blog — Search Labs' },
       observability:{ view: document.getElementById('page-observability'),subnav: 'obs-home',    title: 'Observability Labs', lab: 'observability', hideNewsletter: true },
       'obs-article':{ view: document.getElementById('page-obs-article'),  subnav: 'obs-home',    title: 'Evaluating search relevance part 2 — Phi-3 as relevance judge — Observability Labs', lab: 'observability', hideNewsletter: true },
-      'obs-filter': { view: document.getElementById('page-obs-filter'),   subnav: 'obs-home',    title: 'Tag — Observability Labs', lab: 'observability' },
+      'obs-filter': { view: document.getElementById('page-obs-filter'),   subnav: 'obs-tags',    title: 'Tag — Observability Labs', lab: 'observability' },
       'obs-author': { view: document.getElementById('page-obs-author'),   subnav: 'obs-home',    title: 'Author — Observability Labs', lab: 'observability' },
       security:     { view: document.getElementById('page-security'),     subnav: 'sec-home',     title: 'Security Labs', lab: 'security', hideNewsletter: true },
       'sec-article':{ view: document.getElementById('page-sec-article'),  subnav: 'sec-home',     title: 'Article — Security Labs', lab: 'security', hideNewsletter: true },
@@ -7444,6 +7623,76 @@ filled_prompt = PROMPT_TEMPLATE.<span class="tok-function">replace</span>(<span 
       window.scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' });
     }
 
+    // ============================================================
+    // Standardized lorem placeholder side-nav — SINGLE SOURCE OF TRUTH
+    // ------------------------------------------------------------
+    // Every page with a "lorem" left nav uses <div class="lorem-sidenav-slot"></div>
+    // as a placeholder. This function fills each slot with the same HTML.
+    // Edit this string once -> all pages update.
+    // Group 1 is OPEN by default. Group 2 is COLLAPSED. Click any label to toggle.
+    // ============================================================
+    function renderLoremSideNavs() {
+      var chev = '<svg class="side-nav__chevron" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+      var subscribeIcon = '<svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M3 3a10 10 0 0110 10M3 8a5 5 0 015 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="3.5" cy="12.5" r="1" fill="currentColor"/></svg>';
+      var navHTML = [
+        '<nav class="side-nav" aria-label="Categories">',
+          '<div class="side-nav__group">',
+            '<button type="button" class="side-nav__group-label" aria-expanded="true">Lorem ipsum', chev, '</button>',
+            '<ul class="side-nav__list">',
+              '<li class="side-nav__item"><a href="javascript:void(0)" class="side-nav__row is-active">All Articles</a></li>',
+              '<li class="side-nav__item">',
+                '<button type="button" class="side-nav__row" aria-expanded="false">Lorem ipsum', chev, '</button>',
+                '<ul class="side-nav__sublist">',
+                  '<li><a href="javascript:void(0)" class="side-nav__row">Dolor sit</a></li>',
+                  '<li><a href="javascript:void(0)" class="side-nav__row">Amet consectetur</a></li>',
+                '</ul>',
+              '</li>',
+              '<li class="side-nav__item"><a href="javascript:void(0)" class="side-nav__row">Adipiscing elit</a></li>',
+              '<li class="side-nav__item">',
+                '<button type="button" class="side-nav__row" aria-expanded="false">Sed do eiusmod', chev, '</button>',
+                '<ul class="side-nav__sublist">',
+                  '<li><a href="javascript:void(0)" class="side-nav__row">Tempor incididunt</a></li>',
+                  '<li><a href="javascript:void(0)" class="side-nav__row">Magna aliqua</a></li>',
+                '</ul>',
+              '</li>',
+              '<li class="side-nav__item"><a href="javascript:void(0)" class="side-nav__row">Ut labore</a></li>',
+            '</ul>',
+          '</div>',
+          '<div class="side-nav__group is-collapsed">',
+            '<button type="button" class="side-nav__group-label" aria-expanded="false">Dolor sit amet', chev, '</button>',
+            '<ul class="side-nav__list">',
+              '<li class="side-nav__item"><a href="javascript:void(0)" class="side-nav__row">Ut enim ad minim</a></li>',
+              '<li class="side-nav__item">',
+                '<button type="button" class="side-nav__row" aria-expanded="false">Quis nostrud', chev, '</button>',
+                '<ul class="side-nav__sublist">',
+                  '<li><a href="javascript:void(0)" class="side-nav__row">Exercitation</a></li>',
+                  '<li><a href="javascript:void(0)" class="side-nav__row">Ullamco laboris</a></li>',
+                '</ul>',
+              '</li>',
+              '<li class="side-nav__item"><a href="javascript:void(0)" class="side-nav__row">Nisi ut aliquip</a></li>',
+              '<li class="side-nav__item">',
+                '<button type="button" class="side-nav__row" aria-expanded="false">Duis aute irure', chev, '</button>',
+                '<ul class="side-nav__sublist">',
+                  '<li><a href="javascript:void(0)" class="side-nav__row">Reprehenderit</a></li>',
+                  '<li><a href="javascript:void(0)" class="side-nav__row">Voluptate velit</a></li>',
+                '</ul>',
+              '</li>',
+              '<li class="side-nav__item"><a href="javascript:void(0)" class="side-nav__row">Esse cillum</a></li>',
+            '</ul>',
+          '</div>',
+          '<div class="side-nav__btn-pair">',
+            '<button type="button" class="side-nav__btn"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="5" y="5" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M11 5V3.5A1.5 1.5 0 009.5 2H3.5A1.5 1.5 0 002 3.5v6A1.5 1.5 0 003.5 11H5" stroke="currentColor" stroke-width="1.5"/></svg>Copy</button>',
+            '<button type="button" class="side-nav__btn"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M3 8l5-5m0 0l5 5M8 3v10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Share</button>',
+          '</div>',
+        '</nav>'
+      ].join('');
+      var slots = document.querySelectorAll('.lorem-sidenav-slot');
+      for (var i = 0; i < slots.length; i++) {
+        slots[i].innerHTML = navHTML;
+      }
+    }
+    renderLoremSideNavs();
+
     // Side-nav — only <button> rows toggle; <a> rows are flat links.
     document.addEventListener('click', function (e) {
       var rowBtn = e.target.closest && e.target.closest('button.side-nav__row');
@@ -7460,6 +7709,158 @@ filled_prompt = PROMPT_TEMPLATE.<span class="tok-function">replace</span>(<span 
         var group = groupBtn.parentElement;
         var collapsed = group.classList.toggle('is-collapsed');
         groupBtn.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
+      }
+    });
+
+    // ============================================================
+    // Glossary page — data + render
+    // ============================================================
+    var GLOSSARY = {
+      'A': [
+        { term: 'Aggregation', def: 'A summarization of data into buckets or metrics across one or many fields, conceptually similar to a SQL GROUP BY. Aggregations power faceted navigation, dashboard analytics, and slice-and-dice exploration.' },
+        { term: 'Analyzer', def: 'The component that processes text at index and query time. An analyzer is a pipeline of character filters, a tokenizer, and token filters that transforms raw text into searchable tokens stored in the inverted index.' }
+      ],
+      'B': [
+        { term: 'BM25', def: 'A ranking function for full-text retrieval that scores documents based on term frequency, inverse document frequency, and document length. BM25 is the default similarity used by Elasticsearch for lexical search.' },
+        { term: 'Bi-encoder', def: 'A model architecture that encodes the query and the document independently into vectors. The score is the similarity between the two vectors. Bi-encoders are fast at search time and form the basis of most dense retrieval systems.' }
+      ],
+      'C': [
+        { term: 'Chunking', def: 'Splitting long documents into smaller passages before embedding them. Chunking matters because most embedding models have a fixed input length, and smaller chunks usually retrieve more precisely than whole documents.' },
+        { term: 'Cluster', def: 'A collection of one or more Elasticsearch nodes that share data and workload. The cluster is the top-level boundary for data, security, and coordination.' }
+      ],
+      'D': [
+        { term: 'Dense Vector', def: 'A fixed-length numeric vector where most values are non-zero, typically produced by a neural embedding model. Dense vectors capture semantic similarity and are the basis of modern semantic search.' },
+        { term: 'Document', def: 'The basic unit of information indexed by Elasticsearch. A document is a JSON object stored under an _id within an index, made up of fields that can be searched, filtered, and aggregated.' }
+      ],
+      'E': [
+        { term: 'Embedding', def: 'A vector representation of text, images, or other content produced by a model. Embeddings encode meaning as geometric position, so similar concepts end up close together in vector space.' },
+        { term: 'ELSER', def: 'Elastic Learned Sparse EncodeR. A sparse-vector model trained by Elastic that expands queries and documents into weighted token sets, giving strong semantic recall without requiring a dense vector pipeline.' }
+      ],
+      'F': [
+        { term: 'F1 Score', def: 'A classification metric that balances precision and recall into a single number by taking their harmonic mean. Useful when both false positives and false negatives carry cost, and when class distribution is uneven. Ranges from 0 to 1, with 1 being perfect precision and recall.' },
+        { term: 'Few-Shot Learning', def: 'Performing a task from just a handful of examples rather than a large training dataset. Some embedding models adapt to new tasks with only a few labeled examples, which matters for specialized domains where labeled data is scarce.' },
+        { term: 'Fine-Tuning', def: 'Taking a pre-trained model and continuing to train it on a more specific task or dataset. For embedding models, fine-tuning typically means training the model to place similar content close together and dissimilar content far apart. Investing in data quality, task specialization, and fine-tuning for embedding quality counts for much more than the choice of base architecture.' },
+        { term: 'First-Stage Retrieval', def: 'The initial stage of a multi-stage retrieval pipeline, responsible for quickly narrowing millions of candidates down to a smaller set, typically hundreds, for further reranking. First-stage retrieval prioritizes speed and recall over precision, accepting some irrelevant results in exchange for broad coverage. Both dense methods, such as bi-encoder embedding models, and sparse methods, such as BM25, are commonly used at this stage.' },
+        { term: 'FLOPS (Floating Point Operations Per Second)', def: 'A measure of compute throughput used to compare hardware capacity for training and inference. Modern GPUs are typically described in TFLOPS (trillions) or PFLOPS (quadrillions).' }
+      ],
+      'H': [
+        { term: 'Hybrid Search', def: 'A retrieval strategy that combines lexical scoring (such as BM25) with vector similarity. Hybrid search captures exact-match precision from the lexical side and semantic recall from the vector side, typically blended with reciprocal rank fusion or score normalization.' }
+      ],
+      'I': [
+        { term: 'Index', def: 'A logical namespace for related documents in Elasticsearch. An index defines the mapping, settings, and shard layout that determine how documents are stored and queried.' },
+        { term: 'Inverted Index', def: 'The data structure at the heart of lexical search. For every unique token in the corpus, the inverted index stores the list of documents containing that token, enabling fast term lookups.' }
+      ],
+      'K': [
+        { term: 'kNN', def: 'k-Nearest Neighbor search. Given a query vector, returns the k most similar document vectors by distance metric (typically cosine or dot product). Approximate kNN trades a tiny amount of accuracy for much higher speed and scales to billions of vectors.' }
+      ],
+      'L': [
+        { term: 'Lucene', def: 'The open-source search library that Elasticsearch is built on. Lucene provides the inverted index, query parser, and core ranking primitives that Elasticsearch wraps with a distributed, REST-based runtime.' }
+      ],
+      'M': [
+        { term: 'Mapping', def: 'The schema for an index. The mapping defines each field, its data type, and how it should be analyzed, indexed, and stored. Getting the mapping right has the largest single impact on query performance.' }
+      ],
+      'N': [
+        { term: 'Node', def: 'A single running instance of Elasticsearch. Nodes join clusters, hold shards, and can take on roles such as master, data, ingest, or coordinating.' }
+      ],
+      'P': [
+        { term: 'Precision', def: 'The fraction of returned results that are relevant. Precision answers "of the things I retrieved, how many were correct?" It pairs with recall to describe retrieval quality.' }
+      ],
+      'Q': [
+        { term: 'Query', def: 'A request for documents that match given criteria. Elasticsearch supports query DSL (a JSON tree), ES|QL (a piped query language), and Lucene-style strings, all of which compile down to the same execution engine.' }
+      ],
+      'R': [
+        { term: 'Recall', def: 'The fraction of relevant documents in the corpus that the system actually retrieves. Recall answers "of all the correct things, how many did I find?" High recall matters for first-stage retrieval.' },
+        { term: 'Reranking', def: 'A second pass over an initial candidate set that scores documents using a more expensive model (often a cross-encoder) than what was used at first stage. Reranking trades latency for relevance and is one of the highest-leverage operations in modern retrieval pipelines.' },
+        { term: 'Retrieval-Augmented Generation', def: 'Often abbreviated RAG. A pattern in which an LLM is grounded by retrieving relevant context from an external store at query time and inserting it into the prompt. RAG keeps generated answers current and citable without retraining the model.' }
+      ],
+      'S': [
+        { term: 'Semantic Search', def: 'Retrieval driven by meaning rather than literal token overlap. Semantic search uses vector similarity (or sparse-vector models like ELSER) to surface documents that express the same idea as the query, even when the wording differs.' },
+        { term: 'Sparse Vector', def: 'A vector representation where most values are zero. Sparse vectors map tokens to weights and are well-suited to inverted-index storage. ELSER is the canonical example.' }
+      ],
+      'T': [
+        { term: 'Token', def: 'A unit of text emitted by the tokenizer, typically a word or sub-word. Tokens are the atoms of lexical retrieval — every match in BM25 is ultimately a token-level lookup.' },
+        { term: 'Tokenizer', def: 'The component of an analyzer that splits raw text into tokens. Common tokenizers include standard, whitespace, edge n-gram, and language-specific variants.' }
+      ],
+      'V': [
+        { term: 'Vector Database', def: 'A system optimized for storing vectors and running similarity searches on them at scale. Elasticsearch acts as a vector database via dense_vector fields and kNN search, while also handling lexical and structured data in the same query.' }
+      ]
+    };
+
+    function renderGlossary(letter) {
+      letter = (letter || 'F').toUpperCase();
+      var alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+      var ribbon = document.getElementById('glossary-alphabet');
+      if (!ribbon) return;
+      ribbon.innerHTML = alphabet.map(function (L) {
+        var has = GLOSSARY[L] && GLOSSARY[L].length > 0;
+        var active = (L === letter) ? ' is-active' : '';
+        var dis = has ? '' : ' disabled';
+        return '<button type="button" class="' + active.trim() + '" data-letter="' + L + '"' + dis + '>' + L + '</button>';
+      }).join('');
+      var card = document.getElementById('glossary-letter-card');
+      if (card) card.textContent = letter;
+      var toc = document.getElementById('glossary-toc');
+      var defs = document.getElementById('glossary-defs');
+      var entries = GLOSSARY[letter] || [];
+      if (entries.length === 0) {
+        if (toc) toc.innerHTML = '<p class="glossary-empty">No terms for this letter.</p>';
+        if (defs) defs.innerHTML = '<p class="glossary-empty">No glossary entries yet for "' + letter + '".</p>';
+        return;
+      }
+      if (toc) {
+        toc.innerHTML = entries.map(function (e, i) {
+          return '<a href="javascript:void(0)" data-jump="' + i + '">' + e.term + '</a>';
+        }).join('');
+      }
+      if (defs) {
+        defs.innerHTML = entries.map(function (e, i) {
+          return '<div class="glossary-term" id="glossary-term-' + i + '">'
+               +   '<h2 class="glossary-term__title">' + e.term + '</h2>'
+               +   '<p class="glossary-term__def">' + e.def + '</p>'
+               + '</div>';
+        }).join('');
+      }
+    }
+
+    document.addEventListener('click', function (e) {
+      var btn = e.target.closest && e.target.closest('.glossary-alphabet button:not([disabled])');
+      if (btn) {
+        e.preventDefault();
+        renderGlossary(btn.getAttribute('data-letter'));
+        return;
+      }
+      var jump = e.target.closest && e.target.closest('.glossary-toc a[data-jump]');
+      if (jump) {
+        e.preventDefault();
+        var i = jump.getAttribute('data-jump');
+        var t = document.getElementById('glossary-term-' + i);
+        if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+
+    // Render glossary whenever we route into it
+    window.addEventListener('hashchange', function () {
+      if ((window.location.hash || '').replace('#', '').split(':')[0] === 'glossary') renderGlossary('F');
+    });
+    if ((window.location.hash || '').replace('#', '').split(':')[0] === 'glossary') renderGlossary('F');
+
+    // ============================================================
+    // Blog page tabs (Articles / Series)
+    // ============================================================
+    document.addEventListener('click', function (e) {
+      var btn = e.target.closest && e.target.closest('.blog-tabs button[data-blog-tab]');
+      if (!btn) return;
+      e.preventDefault();
+      var target = btn.getAttribute('data-blog-tab');
+      // Toggle button active state
+      var tabs = document.querySelectorAll('.blog-tabs button[data-blog-tab]');
+      for (var i = 0; i < tabs.length; i++) {
+        tabs[i].classList.toggle('is-active', tabs[i].getAttribute('data-blog-tab') === target);
+      }
+      // Toggle panel visibility
+      var panels = document.querySelectorAll('[data-blog-tab-panel]');
+      for (var j = 0; j < panels.length; j++) {
+        panels[j].hidden = (panels[j].getAttribute('data-blog-tab-panel') !== target);
       }
     });
 
